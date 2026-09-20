@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>História • 7º ano | Home School</title>
+<style>
+:root{--bg:#f7f3ea;--paper:#fffdf8;--ink:#2f2a24;--muted:#746b60;--accent:#9a3412;--accent2:#b45309;--good:#166534;--bad:#b91c1c;--line:#eadfce;--soft:#fff7ed;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#f7f3ea,#efe7da);color:var(--ink)}
+header{position:sticky;top:0;z-index:20;background:rgba(255,253,248,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top{max-width:1100px;margin:auto;display:flex;gap:12px;align-items:center;padding:12px 18px}.brand{font-weight:900}.top a{text-decoration:none;color:var(--ink)}
+.progress{height:5px;background:#eadfce}.progress>div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#f59e0b);transition:.25s}
+.wrap{max-width:1100px;margin:auto;padding:28px 18px 64px}.hero{background:radial-gradient(circle at 80% 20%,#fed7aa 0 10%,transparent 35%),linear-gradient(135deg,#fff7ed,#fffdf8);border:1px solid var(--line);border-radius:28px;padding:34px;box-shadow:0 14px 40px rgba(72,47,25,.08)}
+.hero h1{font-size:clamp(2.2rem,6vw,4.2rem);margin:.2rem 0}.hero p{color:var(--muted);font-size:1.08rem;line-height:1.65;max-width:800px}.pill{display:inline-block;padding:7px 11px;border-radius:999px;background:#ffedd5;color:#9a3412;font-weight:800;font-size:.84rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:18px}.card{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 10px 26px rgba(72,47,25,.06)}
+.card h3{margin:.2rem 0 .5rem}.card p{color:var(--muted);line-height:1.55}.section{margin-top:34px}.section h2{font-size:clamp(1.7rem,3vw,2.5rem);margin-bottom:8px}.lead{color:var(--muted);line-height:1.65}
+.scene{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch}.scene .visual{min-height:300px;background:#fff7ed;border-radius:22px;border:1px solid var(--line);padding:14px;overflow:hidden}.scene .text{background:var(--paper);border-radius:22px;border:1px solid var(--line);padding:22px}
+svg{max-width:100%;height:auto}.ship{animation:sail 7s ease-in-out infinite alternate;transform-origin:center}@keyframes sail{from{transform:translateX(-10px)}to{transform:translateX(30px)}}.pulse{animation:pulse 2s infinite}@keyframes pulse{50%{opacity:.45}}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.step{background:#fff;border:1px dashed #d6bfa9;border-radius:16px;padding:16px}.step b{display:block;margin-bottom:6px;color:var(--accent)}
+.quiz{margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}.q{padding:16px 0;border-bottom:1px solid #f0e7dc}.q:last-child{border-bottom:0}.q h4{margin:0 0 10px}.opts{display:grid;gap:8px}.opt{padding:11px 13px;border-radius:12px;border:1px solid #dbcbb9;background:#fff;cursor:pointer;text-align:left;font:inherit}.opt:hover{background:#fff7ed}.opt.correct{border-color:#86efac;background:#f0fdf4}.opt.wrong{border-color:#fecaca;background:#fef2f2}.feedback{margin-top:8px;font-weight:700;min-height:1.2em}.ok{color:var(--good)}.no{color:var(--bad)}
+input[type=text]{width:100%;padding:12px 13px;border:1px solid #d6c6b4;border-radius:12px;font:inherit;background:#fff}.row{display:flex;gap:8px;flex-wrap:wrap}.btn{border:0;border-radius:12px;padding:11px 14px;font-weight:800;cursor:pointer;background:var(--accent);color:white}.btn.alt{background:#fff;border:1px solid #d6c6b4;color:var(--ink)}
+.match{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.tile{min-height:88px;border:1px solid #d9c7b2;background:#fff;border-radius:14px;padding:10px;cursor:pointer;font-weight:800}.tile.open{background:#fff7ed}.tile.done{background:#ecfdf5;border-color:#86efac;cursor:default}.score{font-weight:900;color:var(--accent)}
+.order-list{display:grid;gap:10px}.order-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;background:#fff;border:1px solid #ddcdbb;border-radius:12px}.move{display:flex;gap:6px}.mini{padding:6px 9px;border-radius:8px;border:1px solid #d6c6b4;background:#fff;cursor:pointer}
+.reveal{margin-top:12px}.answer{display:none;margin-top:8px;padding:12px;border-radius:12px;background:#f8fafc;border:1px solid #e2e8f0}.answer.show{display:block}
+.footer{text-align:center;color:#8a8178;margin-top:42px}.note{font-size:.9rem;color:#6b6258;background:#fffbeb;border:1px solid #fde68a;padding:12px;border-radius:12px}.navchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.navchips a{text-decoration:none;color:#7c2d12;background:#ffedd5;border-radius:999px;padding:8px 11px;font-weight:800}
+@media(max-width:760px){.scene{grid-template-columns:1fr}.match{grid-template-columns:repeat(2,1fr)}.hero{padding:24px}.top{font-size:.92rem}}
+</style>
+</head>
+<body>
+<header><div class="top"><a href="../">← Home School</a><span>•</span><div class="brand">História — 7º ano</div></div><div class="progress"><div id="bar"></div></div></header>
+<main class="wrap">
+<section class="hero">
+<span class="pill">Revisão para a prova</span>
+<h1>Comércio Atlântico de Escravizados & Sociedade Açucareira</h1>
+<p>Uma aula visual e prática para entender as ideias principais, relacionar causas e consequências e treinar com exercícios que você responde na própria página.</p>
+<div class="navchips"><a href="#atl">Comércio Atlântico</a><a href="#acucar">Sociedade Açucareira</a><a href="#jogos">Jogos</a><a href="#final">Desafio final</a></div>
+<div class="grid">
+<div class="card"><h3>🧭 Capítulo 11</h3><p>Comércio Atlântico de Escravizados — páginas 30 a 44.</p></div>
+<div class="card"><h3>🌱 Capítulo 12</h3><p>Brasil Colonial: A Sociedade Açucareira — páginas 45 a 64.</p></div>
+<div class="card"><h3>🎯 Objetivo</h3><p>Entender relações: quem participava, como funcionava a economia e como a sociedade colonial se organizava.</p></div>
+</div>
+</section>
+<p class="note">Este material segue os temas informados pela escola. Como não temos as páginas do livro, as explicações abaixo funcionam como revisão geral dos assuntos; a terminologia exata pode variar no material didático.</p>
+<section class="section" id="atl">
+<h2>1. Comércio Atlântico de Escravizados</h2><p class="lead">Pense no Atlântico como uma grande rede de circulação entre Europa, África e América. Pessoas, mercadorias e riquezas circulavam — mas a escravização transformou milhões de africanos em mercadoria à força.</p>
+<div class="scene">
+<div class="visual">
+<svg viewBox="0 0 760 420" role="img" aria-label="Diagrama simplificado do circuito atlântico">
+<rect width="760" height="420" rx="22" fill="#fef3c7"/>
+<path d="M0 250 C180 220 300 300 420 260 S650 190 760 220 V420 H0Z" fill="#bfdbfe"/>
+<text x="75" y="110" font-size="28" font-weight="800">AMÉRICA</text><text x="555" y="105" font-size="28" font-weight="800">EUROPA</text><text x="380" y="315" font-size="28" font-weight="800">ÁFRICA</text>
+<path d="M545 130 C490 160 445 210 420 270" stroke="#9a3412" stroke-width="6" fill="none" marker-end="url(#a)"/>
+<path d="M390 280 C300 260 220 220 150 165" stroke="#9a3412" stroke-width="6" fill="none" marker-end="url(#a)"/>
+<path d="M175 140 C300 85 415 95 540 130" stroke="#b45309" stroke-width="5" fill="none" stroke-dasharray="12 10" marker-end="url(#a)"/>
+<g class="ship"><text x="290" y="235" font-size="38">⛵</text></g>
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#9a3412"/></marker></defs>
+<text x="470" y="210" font-size="18">mercadorias e interesses comerciais</text>
+<text x="170" y="310" font-size="18">tráfico forçado de africanos escravizados</text>
+<text x="265" y="80" font-size="18">produtos coloniais e riqueza</text>
+</svg>
+</div>
+<div class="text"><h3>O que precisa ficar claro?</h3>
+<div class="steps"><div class="step"><b>1. Não era migração livre</b>Milhões de africanos foram capturados, vendidos e transportados à força.</div><div class="step"><b>2. Havia lucro</b>O tráfico fazia parte de uma economia atlântica que gerava ganhos para comerciantes e grupos envolvidos.</div><div class="step"><b>3. A violência era estrutural</b>A escravidão sustentava atividades econômicas coloniais e organizava relações sociais.</div><div class="step"><b>4. Houve resistência</b>Pessoas escravizadas resistiram de muitas formas: fugas, preservação cultural, revoltas e organização de comunidades.</div></div>
+</div></div>
+<div class="quiz">
+<div class="q"><h4>Questão rápida 1</h4><p>Qual frase descreve melhor o tráfico atlântico de africanos escravizados?</p><div class="opts" data-answer="b"><button class="opt" data-v="a">Foi uma viagem voluntária em busca de trabalho.</button><button class="opt" data-v="b">Foi um deslocamento forçado ligado à escravidão e ao comércio atlântico.</button><button class="opt" data-v="c">Foi apenas uma troca cultural entre continentes.</button></div><div class="feedback"></div></div>
+<div class="q"><h4>Questão rápida 2 — escreva</h4><p>Complete: “A travessia de africanos escravizados pelo Oceano Atlântico aconteceu de forma ______.”</p><input type="text" data-text-answer="forçada|forcada|compulsória|compulsoria" placeholder="Digite sua resposta"><div class="row" style="margin-top:8px"><button class="btn check-text">Conferir</button></div><div class="feedback"></div></div>
+</div>
+</section>
+<section class="section" id="acucar">
+<h2>2. Brasil Colonial: Sociedade Açucareira</h2><p class="lead">Imagine um grande “sistema de produção” do período colonial. O engenho não era só a máquina de moer cana: podia significar todo o conjunto produtivo e social ligado ao açúcar.</p>
+<div class="scene"><div class="text"><h3>Do campo ao açúcar</h3><div class="steps"><div class="step"><b>Plantio</b>Cultivo da cana-de-açúcar.</div><div class="step"><b>Moenda</b>A cana era esmagada para extrair o caldo.</div><div class="step"><b>Fervura e purga</b>O caldo era processado até virar açúcar.</div><div class="step"><b>Exportação</b>O produto seguia para mercados externos.</div></div><p class="lead">Esse processo exigia terra, equipamentos, circulação comercial e grande quantidade de trabalho — sobretudo trabalho escravizado.</p></div>
+<div class="visual"><svg viewBox="0 0 600 420"><rect width="600" height="420" rx="22" fill="#ecfccb"/><text x="230" y="60" font-size="34">🌱</text><text x="200" y="98" font-size="24" font-weight="800">Cana</text><path d="M300 115v45" stroke="#92400e" stroke-width="5"/><text x="225" y="205" font-size="42">⚙️</text><text x="190" y="245" font-size="22" font-weight="800">Moenda</text><path d="M300 260v40" stroke="#92400e" stroke-width="5"/><text x="225" y="350" font-size="42">🍯</text><text x="175" y="390" font-size="22" font-weight="800">Açúcar processado</text><circle class="pulse" cx="300" cy="205" r="95" fill="none" stroke="#f59e0b" stroke-width="4"/></svg></div></div>
+<div class="card" style="margin-top:18px"><h3>Quem fazia parte dessa sociedade?</h3><p>Havia grupos com posições muito desiguais. Senhores de engenho concentravam terras, riqueza e poder; trabalhadores livres exerciam diferentes funções; e pessoas escravizadas realizavam grande parte do trabalho agrícola e produtivo sob coerção.</p></div>
+<div class="quiz">
+<div class="q"><h4>Questão rápida 3</h4><p>Na economia açucareira colonial, o engenho era:</p><div class="opts" data-answer="c"><button class="opt" data-v="a">Somente a casa onde morava o senhor.</button><button class="opt" data-v="b">Apenas o porto de exportação.</button><button class="opt" data-v="c">Um conjunto de produção ligado ao cultivo e processamento da cana.</button></div><div class="feedback"></div></div>
+<div class="q"><h4>Questão rápida 4 — escreva</h4><p>Qual produto estava no centro dessa economia?</p><input type="text" data-text-answer="açúcar|acucar" placeholder="Digite sua resposta"><div class="row" style="margin-top:8px"><button class="btn check-text">Conferir</button></div><div class="feedback"></div></div>
+</div>
+</section>
+<section class="section" id="jogos"><h2>3. Jogos para fixar</h2><p class="lead">Agora vale raciocinar rápido, como num jogo.</p>
+<div class="card"><h3>🧩 Jogo da memória — termo e ideia</h3><p>Encontre os pares.</p><div class="match" id="match"></div><p>Tentativas: <span class="score" id="tries">0</span></p></div>
+<div class="card" style="margin-top:16px"><h3>🔀 Coloque em ordem</h3><p>Organize as etapas básicas da produção do açúcar.</p><div class="order-list" id="order"></div><div class="row" style="margin-top:12px"><button class="btn" id="checkOrder">Conferir ordem</button><button class="btn alt" id="shuffleOrder">Misturar</button></div><div class="feedback" id="orderFeedback"></div></div>
+</section>
+<section class="section" id="final"><h2>4. Desafio final</h2><p class="lead">Misture os dois capítulos. Tente sem olhar para cima.</p>
+<div class="quiz">
+<div class="q"><h4>1) Qual relação existe entre o comércio atlântico de escravizados e a economia açucareira?</h4><textarea id="finalText" style="width:100%;min-height:110px;padding:12px;border:1px solid #d6c6b4;border-radius:12px;font:inherit" placeholder="Escreva com suas palavras..."></textarea><button class="btn reveal" data-reveal="model">Ver resposta-modelo</button><div class="answer" id="model">Uma boa resposta deve ligar o tráfico forçado de africanos ao uso de mão de obra escravizada na produção colonial de açúcar, mostrando que os dois fenômenos faziam parte de uma mesma economia atlântica.</div></div>
+<div class="q"><h4>2) Verdadeiro ou falso?</h4><p>“A sociedade açucareira era socialmente igualitária.”</p><div class="opts" data-answer="f"><button class="opt" data-v="v">Verdadeiro</button><button class="opt" data-v="f">Falso</button></div><div class="feedback"></div></div>
+<div class="q"><h4>3) Qual alternativa mostra resistência de pessoas escravizadas?</h4><div class="opts" data-answer="a"><button class="opt" data-v="a">Fugas, revoltas e formação de comunidades.</button><button class="opt" data-v="b">Aceitação passiva da escravidão.</button><button class="opt" data-v="c">Somente trabalho no engenho.</button></div><div class="feedback"></div></div>
+</div>
+<div class="card" style="margin-top:18px"><h3>⚡ Revisão de 1 minuto</h3><p><b>Comércio Atlântico:</b> deslocamento forçado, escravidão, lucro, violência e resistência.</p><p><b>Sociedade Açucareira:</b> cana, engenho, exportação, hierarquia social e trabalho escravizado.</p></div>
+</section>
+<div class="footer">Home School • História • 7º ano</div>
+</main>
+<script>
+const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+document.querySelectorAll('.opts').forEach(group=>{group.querySelectorAll('.opt').forEach(btn=>btn.addEventListener('click',()=>{if(group.dataset.locked)return;group.dataset.locked='1';const ok=btn.dataset.v===group.dataset.answer;btn.classList.add(ok?'correct':'wrong');if(!ok){group.querySelector(`[data-v="${group.dataset.answer}"]`)?.classList.add('correct')}const fb=group.parentElement.querySelector('.feedback');fb.textContent=ok?'Acertou!':'Quase. Veja a alternativa correta.';fb.className='feedback '+(ok?'ok':'no')}))});
+document.querySelectorAll('.check-text').forEach(btn=>btn.addEventListener('click',()=>{const q=btn.closest('.q'),inp=q.querySelector('input'),answers=inp.dataset.textAnswer.split('|').map(norm),ok=answers.includes(norm(inp.value));const fb=q.querySelector('.feedback');fb.textContent=ok?'Acertou!':'Tente novamente. Pense na ideia principal da aula.';fb.className='feedback '+(ok?'ok':'no')}));
+document.querySelectorAll('[data-reveal]').forEach(b=>b.addEventListener('click',()=>document.getElementById(b.dataset.reveal).classList.toggle('show')));
+const pairs=[['Engenho','produção de açúcar'],['Tráfico atlântico','deslocamento forçado'],['Moenda','esmagar a cana'],['Resistência','fugas e revoltas']];let deck=[];pairs.forEach((p,i)=>{deck.push({id:i,t:p[0]},{id:i,t:p[1]})});deck.sort(()=>Math.random()-.5);const box=document.getElementById('match');let first=null,lock=false,tries=0;deck.forEach(c=>{const b=document.createElement('button');b.className='tile';b.textContent='?';b.dataset.id=c.id;b.dataset.text=c.t;b.onclick=()=>{if(lock||b.classList.contains('done')||b===first)return;b.textContent=c.t;b.classList.add('open');if(!first){first=b;return}tries++;document.getElementById('tries').textContent=tries;if(first.dataset.id===b.dataset.id){first.classList.add('done');b.classList.add('done');first=null}else{lock=true;const f=first;setTimeout(()=>{f.textContent='?';b.textContent='?';f.classList.remove('open');b.classList.remove('open');first=null;lock=false},700)}};box.appendChild(b)});
+const correctOrder=['Plantio da cana','Moagem na moenda','Fervura e processamento','Açúcar pronto para circulação e exportação'];let order=[...correctOrder].sort(()=>Math.random()-.5);const orderBox=document.getElementById('order');function renderOrder(){orderBox.innerHTML='';order.forEach((t,i)=>{const d=document.createElement('div');d.className='order-item';d.innerHTML=`<span>${i+1}. ${t}</span><span class="move"><button class="mini" data-up="${i}">↑</button><button class="mini" data-down="${i}">↓</button></span>`;orderBox.appendChild(d)});orderBox.querySelectorAll('[data-up]').forEach(b=>b.onclick=()=>{const i=+b.dataset.up;if(i>0){[order[i-1],order[i]]=[order[i],order[i-1]];renderOrder()}});orderBox.querySelectorAll('[data-down]').forEach(b=>b.onclick=()=>{const i=+b.dataset.down;if(i<order.length-1){[order[i+1],order[i]]=[order[i],order[i+1]];renderOrder()}})}renderOrder();
+document.getElementById('checkOrder').onclick=()=>{const ok=order.every((v,i)=>v===correctOrder[i]);const f=document.getElementById('orderFeedback');f.textContent=ok?'Perfeito! A sequência está correta.':'Ainda não. Pense no caminho da cana até virar açúcar.';f.className='feedback '+(ok?'ok':'no')};document.getElementById('shuffleOrder').onclick=()=>{order.sort(()=>Math.random()-.5);renderOrder();document.getElementById('orderFeedback').textContent=''};
+window.addEventListener('scroll',()=>{const h=document.documentElement;document.getElementById('bar').style.width=((h.scrollTop/(h.scrollHeight-h.clientHeight))*100)+'%'});
+</script>
+</body></html>
