@@ -54,4 +54,5 @@ items.forEach(q=>{const a=norm(q.dataset.a),fb=q.querySelector('.fb');q.querySel
 const pairs=[['charger','carregador'],['keyboard','teclado'],['share photos','compartilhar fotos'],['report a post','denunciar uma publicação']];let mem=[];pairs.forEach((p,i)=>{mem.push({i,t:p[0]},{i,t:p[1]})});mem.sort(()=>Math.random()-.5);const box=document.getElementById('memory');let open=[],tries=0;mem.forEach((x,k)=>{const b=document.createElement('button');b.className='tile';b.textContent='?';b.dataset.k=k;b.onclick=()=>{if(b.classList.contains('done')||open.includes(b)||open.length===2)return;b.classList.add('open');b.textContent=x.t;open.push(b);if(open.length===2){tries++;document.getElementById('tries').textContent=tries;const a=mem[+open[0].dataset.k],c=mem[+open[1].dataset.k];setTimeout(()=>{if(a.i===c.i){open.forEach(z=>z.classList.add('done'))}else{open.forEach(z=>{z.classList.remove('open');z.textContent='?'})}open=[]},650)}};box.appendChild(b)});
 document.getElementById('reset').onclick=()=>location.reload();upd();
 </script>
+<script src="/home-school/assets/review-clock.js"></script>
 </body></html>
