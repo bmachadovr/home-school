@@ -2,30 +2,38 @@
 
 ## 1. Objetivo
 
-O Home School é um ambiente de estudos do 7º ano organizado por matéria, bimestre e revisão.  
-Cada página deve funcionar como uma jornada de estudo guiada, visual e gamificada, priorizando compreensão, prática ativa e autonomia.
+O Home School é um ambiente de estudos do 7º ano organizado por matéria, bimestre, verificação e revisão. Cada página deve funcionar como uma jornada de estudo guiada, visual e gamificada, priorizando compreensão, prática ativa e autonomia.
 
 A duração padrão de uma jornada completa deve ficar entre **40 e 50 minutos**.
 
 ---
 
-## 2. Organização do conteúdo
+## 2. Organização do conteúdo e nomenclatura
 
-A organização principal será:
+A identificação oficial deve seguir esta ordem:
 
-- Matéria
-- Bimestre
-- Revisão
+**nº ordinal do bimestre + “Bimestre” + Vn + Revisão n**
 
-Exemplos de nomes exibidos ao aluno:
+Exemplos:
 
-- Inglês — 3º Bimestre — Revisão 1
-- Inglês — 3º Bimestre — Revisão 2
-- História — 3º Bimestre — Revisão 1
+- **3º Bimestre V2 — Revisão 1**
+- **3º Bimestre V2 — Revisão 2**
+- **2º Bimestre V1 — Revisão 1**
 
-### Regra para criar ou sobrescrever páginas
+### Significado de cada parte
 
-**Sobrescrever a mesma revisão** quando houver apenas ajustes ou melhorias no mesmo material, por exemplo:
+- **3º Bimestre**: período letivo.
+- **V2**: número da **Verificação** da escola. O “V” significa Verificação; não representa versão da página.
+- **Revisão 1**: primeira jornada/página de revisão criada para aquela prova.
+- **Revisão 2**: segunda jornada/página de revisão da mesma prova, criada quando houver uma nova experiência de estudo relevante.
+
+A identificação da Verificação deve vir do calendário ou material oficial da escola. Não inferir V1/V2 quando a fonte não informar.
+
+Para o calendário atualmente usado como referência, a identificação correta é **3º Bimestre V2**, pois o documento é “CALENDÁRIO VERIFICAÇÕES 2 - 3º BIMESTRE”.
+
+### Regra para sobrescrever ou criar nova Revisão
+
+**Sobrescrever a mesma Revisão** quando houver ajustes ou melhorias na mesma jornada, por exemplo:
 
 - corrigir um exercício;
 - melhorar uma explicação;
@@ -35,21 +43,19 @@ Exemplos de nomes exibidos ao aluno:
 - ajustar a dificuldade;
 - acrescentar um pequeno reforço sem mudar a proposta da jornada.
 
-Exemplo: uma correção em **Revisão 1** continua sendo **Revisão 1**.
+Exemplo: uma alteração em **3º Bimestre V2 — Revisão 1** continua sendo **Revisão 1** e deve sobrescrever essa mesma página.
 
-**Criar uma nova revisão** quando houver uma nova jornada de estudo, com mudança relevante de conteúdo ou experiência, por exemplo:
+**Criar uma nova Revisão** quando houver uma nova jornada de estudo, com mudança relevante de conteúdo ou experiência, por exemplo:
 
 - novos desafios;
 - novos exercícios em quantidade significativa;
 - novo simulado;
 - nova sequência de estudo;
 - nova abordagem;
-- nova preparação para a mesma matéria/prova;
+- nova preparação para a mesma prova;
 - novo conjunto de jogos ou missões.
 
-Exemplo: uma nova página com mais desafios e exercícios diferentes passa a ser **Revisão 2**.
-
-Não usar termos técnicos como “versão” na interface destinada à aluna.
+Exemplo: uma nova página para a mesma prova, com novos desafios e exercícios, passa a ser **3º Bimestre V2 — Revisão 2**.
 
 ---
 
@@ -60,12 +66,24 @@ A página inicial deve apresentar as matérias de forma clara.
 Dentro de cada matéria, a aluna deve conseguir identificar:
 
 - o bimestre;
-- a revisão disponível;
+- a Verificação (V1, V2 etc.);
+- a Revisão disponível;
 - o assunto principal;
 - o tempo aproximado da jornada;
 - o status, quando houver: não iniciada, em andamento ou concluída.
 
-O conteúdo anterior não deve ser apagado quando uma nova revisão for criada.
+O conteúdo anterior não deve ser apagado quando uma nova Revisão for criada.
+
+Hierarquia visual recomendada:
+
+**Matéria → Bimestre + Verificação → Revisões**
+
+Exemplo:
+
+**Inglês**
+- 3º Bimestre V2
+  - Revisão 1
+  - Revisão 2
 
 ---
 
@@ -102,8 +120,7 @@ Uma sugestão de distribuição:
 5. Jogo/desafio: 5–8 min
 6. Desafio final e revisão: 5–7 min
 
-O objetivo não é aumentar o tempo com mais texto.  
-O tempo deve vir de **atividade real**: responder, escrever, ordenar, relacionar, escolher, corrigir, jogar e revisar.
+O objetivo não é aumentar o tempo com mais texto. O tempo deve vir de **atividade real**: responder, escrever, ordenar, relacionar, escolher, corrigir, jogar e revisar.
 
 ---
 
@@ -237,6 +254,7 @@ Quando houver calendário, livro, apostila, fotos ou materiais fornecidos:
 
 - usar esses materiais como base principal;
 - preservar a terminologia e o foco da escola;
+- usar o calendário para identificar corretamente Bimestre e Verificação;
 - não inventar conteúdos como se estivessem no material;
 - quando faltar informação, indicar que se trata de reforço complementar;
 - exercícios novos podem ser criados, desde que pratiquem os conteúdos indicados.
@@ -266,7 +284,9 @@ O carrossel é o padrão de navegação principal.
 Antes de considerar uma revisão pronta, verificar:
 
 - [ ] Conteúdo alinhado ao material da escola
-- [ ] Bimestre e número da revisão identificados
+- [ ] Bimestre identificado
+- [ ] Verificação identificada corretamente (V1, V2 etc.)
+- [ ] Número da Revisão identificado
 - [ ] Jornada estimada em 40–50 min
 - [ ] Relógio funcionando
 - [ ] Navegação por carrossel
