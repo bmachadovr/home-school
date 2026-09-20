@@ -20,70 +20,41 @@ Exemplos:
 - **3º Bimestre V2 — Revisão 2**
 - **2º Bimestre V1 — Revisão 1**
 
-### Significado de cada parte
+### Significado
 
 - **3º Bimestre**: período letivo.
 - **V2**: número da **Verificação** da escola. O “V” significa Verificação; não representa versão da página.
 - **Revisão 1**: primeira jornada/página de revisão criada para aquela prova.
-- **Revisão 2**: segunda jornada/página de revisão da mesma prova, criada quando houver uma nova experiência de estudo relevante.
+- **Revisão 2**: segunda jornada da mesma prova, criada quando houver uma nova experiência de estudo relevante.
 
 A identificação da Verificação deve vir do calendário ou material oficial da escola. Não inferir V1/V2 quando a fonte não informar.
 
-Para o calendário atualmente usado como referência, a identificação correta é **3º Bimestre V2**, pois o documento é “CALENDÁRIO VERIFICAÇÕES 2 - 3º BIMESTRE”.
+### Sobrescrever ou criar nova revisão
 
-### Regra para sobrescrever ou criar nova Revisão
+**Sobrescrever a mesma Revisão** quando houver ajustes ou melhorias na mesma jornada, como corrigir exercícios, melhorar explicações, trocar imagens, ajustar dificuldade ou acrescentar reforços sem mudar a proposta geral.
 
-**Sobrescrever a mesma Revisão** quando houver ajustes ou melhorias na mesma jornada, por exemplo:
-
-- corrigir um exercício;
-- melhorar uma explicação;
-- trocar ou acrescentar uma imagem;
-- corrigir um erro;
-- melhorar uma animação;
-- ajustar a dificuldade;
-- acrescentar um pequeno reforço sem mudar a proposta da jornada.
-
-Exemplo: uma alteração em **3º Bimestre V2 — Revisão 1** continua sendo **Revisão 1** e deve sobrescrever essa mesma página.
-
-**Criar uma nova Revisão** quando houver uma nova jornada de estudo, com mudança relevante de conteúdo ou experiência, por exemplo:
-
-- novos desafios;
-- novos exercícios em quantidade significativa;
-- novo simulado;
-- nova sequência de estudo;
-- nova abordagem;
-- nova preparação para a mesma prova;
-- novo conjunto de jogos ou missões.
-
-Exemplo: uma nova página para a mesma prova, com novos desafios e exercícios, passa a ser **3º Bimestre V2 — Revisão 2**.
+**Criar uma nova Revisão** quando houver uma nova jornada, com novos desafios, exercícios em quantidade significativa, novo simulado, nova sequência, nova abordagem ou novo conjunto de jogos/missões.
 
 ---
 
 ## 3. Estrutura da tela inicial
 
-A página inicial deve apresentar as matérias de forma clara.
+A home deve apresentar as matérias de forma clara e visualmente atraente.
 
-Dentro de cada matéria, a aluna deve conseguir identificar:
+Dentro de cada matéria, a aluna deve identificar:
 
-- o bimestre;
-- a Verificação (V1, V2 etc.);
-- a Revisão disponível;
-- o assunto principal;
-- o tempo aproximado da jornada;
-- o status, quando houver: não iniciada, em andamento ou concluída.
-
-O conteúdo anterior não deve ser apagado quando uma nova Revisão for criada.
+- bimestre;
+- Verificação (V1, V2 etc.);
+- Revisão;
+- assunto principal;
+- tempo aproximado da jornada;
+- status, quando houver: não iniciada, em andamento ou concluída.
 
 Hierarquia visual recomendada:
 
 **Matéria → Bimestre + Verificação → Revisões**
 
-Exemplo:
-
-**Inglês**
-- 3º Bimestre V2
-  - Revisão 1
-  - Revisão 2
+O conteúdo anterior nunca deve ser apagado quando uma nova Revisão for criada.
 
 ---
 
@@ -93,17 +64,15 @@ Cada aula deve funcionar em **carrossel/slides**, com conteúdo dividido em pág
 
 Elementos fixos:
 
-- número da página atual e total de páginas;
+- número da página atual e total;
 - barra de progresso;
 - botões Anterior e Próxima;
-- suporte às setas do teclado no computador;
+- suporte às setas do teclado;
 - relógio de estudo;
 - pausar/continuar o relógio;
-- indicação de tempo sugerido por página;
+- tempo sugerido por página;
 - pontuação acumulada;
 - tela final com desempenho e tempo total.
-
-A navegação deve deixar claro onde a aluna está e quanto falta para terminar.
 
 ---
 
@@ -111,7 +80,7 @@ A navegação deve deixar claro onde a aluna está e quanto falta para terminar.
 
 A meta padrão é **40–50 minutos de estudo efetivo**.
 
-Uma sugestão de distribuição:
+Distribuição recomendada:
 
 1. Aquecimento: 4–6 min
 2. Aula prática: 10–12 min
@@ -120,7 +89,7 @@ Uma sugestão de distribuição:
 5. Jogo/desafio: 5–8 min
 6. Desafio final e revisão: 5–7 min
 
-O objetivo não é aumentar o tempo com mais texto. O tempo deve vir de **atividade real**: responder, escrever, ordenar, relacionar, escolher, corrigir, jogar e revisar.
+O tempo deve vir de **atividade real**, e não de mais texto: responder, escrever, ordenar, relacionar, escolher, corrigir, jogar e revisar.
 
 ---
 
@@ -135,60 +104,122 @@ Elementos recomendados:
 - pontos;
 - estrelas, medalhas ou selos;
 - desafios variados;
-- fases desbloqueadas pelo progresso;
+- fases/progresso;
 - feedback imediato;
-- pequenas mensagens de incentivo;
+- mensagens de incentivo;
 - chefão/desafio final;
 - tela de conclusão.
 
-A gamificação não deve esconder a aprendizagem: cada jogo precisa exercitar diretamente o conteúdo da matéria.
+Cada jogo precisa exercitar diretamente o conteúdo da matéria.
 
 ---
 
-## 7. Personagem oficial
+## 7. Jujuba — personagem oficial do Home School
 
-A personagem criada a partir das fotos fornecidas passa a ser a **personagem oficial do Home School**.
+**Nome oficial:** Jujuba
 
-Ela deve aparecer sempre que fizer sentido em:
+Jujuba é a guia das jornadas de estudo. Sua função é acompanhar a aluna, apresentar objetivos, oferecer dicas, reagir aos resultados e transformar a revisão em uma experiência de aventura e progresso.
 
-- início da missão;
-- explicação de objetivos;
-- dicas;
+### Personalidade
+
+Jujuba deve ser:
+
+- **curiosa**: gosta de descobrir e fazer perguntas;
+- **gentil**: corrige sem constranger;
+- **divertida**: usa humor leve e energia positiva;
+- **incentivadora**: valoriza tentativa, progresso e persistência;
+- **inteligente e prática**: explica de forma simples, com exemplos do cotidiano;
+- **companheira**: fala como alguém que está fazendo a missão junto, não como uma professora rígida.
+
+### Tom de voz
+
+- frases curtas e naturais;
+- linguagem adequada para uma aluna de 12 anos;
+- evitar infantilização excessiva;
+- evitar elogios vazios ou exagerados;
+- após erro, dar uma pista antes da resposta sempre que possível;
+- comemorar progresso sem transformar cada acerto em grande celebração.
+
+### Texto oficial de apresentação
+
+> **Oi! Eu sou a Jujuba e vou estudar com você.** Em cada missão, a gente aprende um pouco, testa o que entendeu e ganha pontos pelo caminho. Errar faz parte do jogo: quando alguma coisa ficar difícil, eu te dou uma pista e a gente tenta de novo. Preparada? Escolha uma matéria e vamos começar!
+
+### Frases padrão da Jujuba
+
+**Início da missão**
+- “Missão aceita! Primeiro vamos entender o que precisa aparecer na prova.”
+- “Vamos por partes. No fim desta jornada, você vai saber exatamente o que já domina.”
+- “Antes de começar: tente responder com o que você já sabe. Depois eu ajudo.”
+
+**Dicas**
+- “Dica da Jujuba: procure a pista mais importante da frase.”
+- “Não precisa decorar tudo de uma vez. Entenda o padrão primeiro.”
+- “Olha de novo para o exemplo anterior. Tem uma pista escondida ali.”
+
+**Acerto**
+- “Boa! Esse ponto já está ficando automático.”
+- “Acertou. Mais uma etapa concluída!”
+- “Isso! Você encontrou a pista certa.”
+
+**Erro / nova tentativa**
+- “Quase. Vamos descobrir onde a frase dá a pista.”
+- “Essa não. Tenta mais uma vez antes de ver a resposta.”
+- “Sem problema — esse é exatamente o tipo de erro que a revisão serve para encontrar.”
+
+**Passagem de fase**
+- “Fase concluída. Agora vamos usar isso em um desafio diferente.”
+- “Você já entendeu a ideia. Hora de testar sem tanta ajuda.”
+- “Checkpoint alcançado! Vamos para a próxima missão.”
+
+**Desafio final**
+- “Chefão final: agora os assuntos vêm misturados, como podem aparecer na prova.”
+- “Sem pistas nesta rodada. Confia no que você treinou.”
+
+**Conclusão**
+- “Missão concluída! Agora vamos ver o que ficou forte e o que merece mais uma rodada.”
+- “Terminamos. O resultado não é só a pontuação: ele mostra onde vale revisar.”
+- “Ótimo trabalho de investigação. Se algum assunto ficou mais fraco, já sabemos qual será a próxima missão.”
+
+### Uso visual da Jujuba
+
+Jujuba deve aparecer, sempre que fizer sentido, em:
+
+- home;
+- abertura da missão;
+- explicação dos objetivos;
+- caixas de dica;
 - jogos;
-- feedback de acerto;
-- incentivo após erro;
+- feedback de acerto/erro;
 - passagem de fase;
-- tela final;
-- conquistas.
+- desafio final;
+- conquistas;
+- tela de resultado.
 
-A personagem deve manter o mesmo estilo visual e funcionar como guia da jornada.
+A mesma identidade visual da personagem deve ser mantida nas páginas futuras.
 
-Arquivo-base atual da personagem: `garota_curiosa_aprender_explorar_crescer.png`
+Arquivo-base atual: `garota_curiosa_aprender_explorar_crescer.png`.
 
 ---
 
 ## 8. Tipos de atividades
 
-As páginas devem variar os formatos.
+Variar formatos e evitar sequências longas de exercícios idênticos.
 
 Priorizar:
 
-- múltipla escolha clicável;
-- verdadeiro ou falso;
+- múltipla escolha;
+- verdadeiro/falso;
 - preencher lacunas;
-- escrever a resposta;
+- resposta digitada;
 - ordenar palavras ou acontecimentos;
-- arrastar/associar pares;
+- associação de pares;
 - jogo da memória;
-- associação de conceitos;
-- corrigir frases ou afirmações;
+- corrigir frases/afirmações;
 - identificar erros;
-- criar uma frase ou resposta curta;
+- criar frase ou resposta curta;
 - interpretação de imagem;
 - mini-simulado;
 - desafio final sem ajuda.
-
-Evitar sequências longas de exercícios idênticos.
 
 ---
 
@@ -196,14 +227,7 @@ Evitar sequências longas de exercícios idênticos.
 
 O conteúdo importante deve reaparecer ao longo da jornada em contextos diferentes.
 
-Exemplo:
-
-- um conceito é apresentado na página 3;
-- aparece em um exercício na página 5;
-- volta em um jogo na página 8;
-- reaparece no desafio final.
-
-Isso é preferível a concentrar dez exercícios iguais logo após a explicação.
+Exemplo: apresentar um conceito, retomá-lo em um exercício, reapresentá-lo em um jogo e colocá-lo novamente no desafio final.
 
 ---
 
@@ -218,15 +242,7 @@ A tela final deve mostrar, quando possível:
 - desempenho por assunto;
 - assuntos que merecem revisão.
 
-Exemplo:
-
-- Should / shouldn't: 4/5
-- Tecnologia: 6/8
-- Possessive adjectives: 3/5
-- Possessive pronouns: 2/5
-- Whose: 4/4
-
-A mensagem final deve orientar o próximo passo de forma simples.
+A mensagem final deve orientar o próximo passo de forma simples, preferencialmente com uma fala da Jujuba.
 
 ---
 
@@ -234,14 +250,14 @@ A mensagem final deve orientar o próximo passo de forma simples.
 
 Nas páginas de Inglês:
 
-- palavras e expressões novas devem poder mostrar tradução em português;
+- palavras e expressões novas devem mostrar tradução em português;
 - no computador: tradução ao passar o mouse;
 - no celular: tradução ao tocar;
-- usar isso de forma seletiva para não poluir a tela;
-- priorizar vocabulário novo, verbos, expressões e palavras-chave das questões;
+- usar o recurso de forma seletiva para não poluir a tela;
+- priorizar vocabulário novo, verbos, expressões e palavras-chave;
 - usar situações do cotidiano;
-- evitar excesso de explicação gramatical abstrata;
-- sempre que possível, partir de exemplos antes da regra;
+- evitar excesso de gramática abstrata;
+- partir de exemplos antes da regra sempre que possível;
 - incluir produção ativa de inglês, não apenas reconhecimento.
 
 A referência principal deve ser o material da escola fornecido para a prova.
@@ -253,11 +269,11 @@ A referência principal deve ser o material da escola fornecido para a prova.
 Quando houver calendário, livro, apostila, fotos ou materiais fornecidos:
 
 - usar esses materiais como base principal;
-- preservar a terminologia e o foco da escola;
-- usar o calendário para identificar corretamente Bimestre e Verificação;
+- preservar terminologia e foco da escola;
+- usar o calendário para identificar Bimestre e Verificação;
 - não inventar conteúdos como se estivessem no material;
 - quando faltar informação, indicar que se trata de reforço complementar;
-- exercícios novos podem ser criados, desde que pratiquem os conteúdos indicados.
+- exercícios novos podem ser criados desde que pratiquem os conteúdos indicados.
 
 ---
 
@@ -265,7 +281,7 @@ Quando houver calendário, livro, apostila, fotos ou materiais fornecidos:
 
 Princípios visuais:
 
-- interface simples;
+- interface simples e bonita;
 - boa leitura no computador e celular;
 - uma ideia principal por slide;
 - textos curtos;
@@ -273,15 +289,12 @@ Princípios visuais:
 - imagens e animações quando ajudarem a entender;
 - botões grandes;
 - feedback visual claro;
-- não sobrecarregar a tela.
-
-O carrossel é o padrão de navegação principal.
+- Jujuba integrada sem ocupar espaço excessivo do conteúdo;
+- carrossel como navegação principal.
 
 ---
 
 ## 14. Critério de qualidade antes de publicar
-
-Antes de considerar uma revisão pronta, verificar:
 
 - [ ] Conteúdo alinhado ao material da escola
 - [ ] Bimestre identificado
@@ -293,9 +306,9 @@ Antes de considerar uma revisão pronta, verificar:
 - [ ] Páginas numeradas
 - [ ] Barra de progresso
 - [ ] Pelo menos três formatos diferentes de atividade
-- [ ] Produção ativa do aluno
+- [ ] Produção ativa da aluna
 - [ ] Jogo ou desafio gamificado
-- [ ] Personagem oficial integrada
+- [ ] Jujuba integrada
 - [ ] Pontuação
 - [ ] Desafio final
 - [ ] Tela de resultado
@@ -309,4 +322,4 @@ Antes de considerar uma revisão pronta, verificar:
 
 O Home School não deve parecer uma apostila digital.
 
-A experiência deve se aproximar de um **jogo de aprendizagem guiado**, no qual a aluna avança por pequenas missões, aprende, pratica, erra, recebe feedback, tenta novamente e conclui a jornada sabendo claramente o que já domina e o que ainda precisa revisar.
+A experiência deve se aproximar de um **jogo de aprendizagem guiado**, no qual a aluna avança por pequenas missões, aprende, pratica, erra, recebe feedback, tenta novamente e conclui sabendo claramente o que já domina e o que ainda precisa revisar. Jujuba é a companheira visual e narrativa dessa jornada.
