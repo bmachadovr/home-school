@@ -14,6 +14,7 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 - História está sendo desenvolvida no mesmo modelo, com aperfeiçoamentos.
 - Ciências possui Revisão 1 publicada para o 3º bimestre, cobrindo Forças e Máquinas Simples, com 53 telas, jogos, atividades interativas e exercícios.
 - Ciências possui Revisão 2 publicada para o 3º bimestre, com 47 telas, aprofundamento das Leis de Newton, máquinas simples, explicações em camadas, ilustrações/animações e o desafio “Newton • Tudo ou Nada”.
+- Ciências possui Revisão 3 publicada para o 3º bimestre, em formato de treino de prova, com 54 exercícios (46 de múltipla escolha), três blocos de simulado, minijogos de memória, forca e jogo da velha quiz, além de diagnóstico final por assunto.
 - Conteúdo deve combinar explicações simples e práticas, imagens/animações quando úteis, exercícios, jogos e atividades interativas.
 - Exercícios devem permitir interação direta na página sempre que possível: digitação, seleção de alternativas e feedback.
 - O texto da interface e das aulas é dirigido à aluna, não ao desenvolvedor.
