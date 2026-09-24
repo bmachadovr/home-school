@@ -81,7 +81,7 @@ function render(){
  scrollTo({top:0,behavior:'smooth'})
 }
 function go(n,review=false){if(n<0||n>38)return;if(!review&&n>st.scene){const q=document.querySelector('.scene.on .choices[data-q]');if(q&&!st.done[q.dataset.q])return;}st.scene=n;if(!review&&n>st.last)st.last=n;save();render()}
-function startFresh(){st.scene=1;save();render()}
+function startFresh(){localStorage.removeItem(K);st={scene:1,last:1,clues:0,done:{},attempts:{}};document.querySelectorAll('.feedback').forEach(f=>{f.className='feedback';f.textContent=''});document.querySelectorAll('.choices button').forEach(b=>b.style.borderColor='');document.querySelectorAll('.next.unlocked').forEach(n=>{n.classList.add('locked');n.classList.remove('unlocked');n.disabled=true;n.setAttribute('aria-disabled','true')});save();render()}
 function resumeGame(){st.scene=maxUnlocked();save();render()}
 function ans(b,q,wrong){if(st.done[q])return;st.attempts[q]=(st.attempts[q]||0)+1;let f=document.getElementById(q+'f');if(!wrong){st.done[q]=1;st.clues++;f.className='feedback ok';f.textContent='✓ Pista confirmada. Raciocínio correto.';b.style.borderColor='#14805e';let n=document.getElementById('n'+q.slice(1));if(n){n.classList.remove('locked');n.classList.add('unlocked');n.disabled=false;n.setAttribute('aria-disabled','false')}save();}else{f.className='feedback bad';f.textContent='Ainda não. Revise a pista e tente outra alternativa.';b.style.borderColor='#b43b52';save()}}
 function resetGame(){localStorage.removeItem(K);st={scene:0,last:0,clues:0,done:{},attempts:{}};render()}
