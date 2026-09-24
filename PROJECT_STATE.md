@@ -25,6 +25,8 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 
 - Filosofia possui duas revisões interativas publicadas para o 3º bimestre. A Revisão 1 prioriza construção didática dos capítulos 5 e 6, com exemplos práticos, dicas, jogos e exercícios. A Revisão 2 prioriza reta final, conexões rápidas, situações-problema, pegadinhas com termos absolutos e treino de questões. Em 2026-09-24, Filosofia foi liberada na Home com links para as duas revisões. A página inicial agora reconhece seis matérias.
 
+- Em 2026-09-24, foi corrigido um defeito de navegação nas duas revisões de Filosofia: ao responder uma questão de múltipla escolha, somente as alternativas daquela questão são desabilitadas; os controles Anterior, Pausar e Próxima permanecem ativos.
+
 ## Current direction
 Aumentar a interatividade e a qualidade pedagógica mantendo navegação simples e linguagem apropriada à aluna.
 
