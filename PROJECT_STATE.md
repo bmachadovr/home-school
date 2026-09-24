@@ -2,7 +2,7 @@
 
 > **AGENT INSTRUCTION:** Leia este arquivo antes de executar trabalho relevante neste projeto. O estado descrito aqui prevalece sobre contexto histórico de conversas, salvo quando código, conteúdo versionado ou evidência mais recente demonstrarem o contrário. Nesse caso, corrija este arquivo na mesma tarefa.
 
-Updated: 2026-09-23
+Updated: 2026-09-24
 
 ## Purpose
 Portal de estudos interativo, organizado por matérias, para uso direto pela aluna no computador.
@@ -19,6 +19,8 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 - Exercícios devem permitir interação direta na página sempre que possível: digitação, seleção de alternativas e feedback.
 - O texto da interface e das aulas é dirigido à aluna, não ao desenvolvedor.
 - Imagens devem ser relevantes ao conteúdo e adequadas à experiência de estudo.
+
+- Matemática foi iniciada com a Revisão 1 do 3º bimestre em formato de jogo investigativo “Os Casos da Detetive Jujuba — O Mistério do Cofre Impossível”. Há um primeiro protótipo jogável versionado, com 10 telas, desafios de inequações, circunferência e áreas, feedback imediato e persistência local. A direção aprovada é expandir o caso para até aproximadamente 50 telas, mantendo narrativa e matemática integradas e usando ilustrações como cenários/elementos do HTML, não como páginas estáticas.
 
 ## Current direction
 Aumentar a interatividade e a qualidade pedagógica mantendo navegação simples e linguagem apropriada à aluna.
