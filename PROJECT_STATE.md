@@ -20,7 +20,7 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 - O texto da interface e das aulas é dirigido à aluna, não ao desenvolvedor.
 - Imagens devem ser relevantes ao conteúdo e adequadas à experiência de estudo.
 
-- Matemática foi iniciada com a Revisão 1 do 3º bimestre em formato de jogo investigativo “Os Casos da Detetive Jujuba — O Mistério do Cofre Impossível”. Há um primeiro protótipo jogável versionado, com 10 telas, desafios de inequações, circunferência e áreas, feedback imediato e persistência local. A direção aprovada é expandir o caso para até aproximadamente 50 telas, mantendo narrativa e matemática integradas e usando ilustrações como cenários/elementos do HTML, não como páginas estáticas.
+- Matemática foi iniciada com a Revisão 1 do 3º bimestre em formato de jogo investigativo “Os Casos da Detetive Jujuba — O Mistério do Cofre Impossível”. Há um primeiro protótipo jogável versionado, com 10 telas, desafios de inequações, circunferência e áreas, feedback imediato e persistência local. Matemática já está exposta na página raiz do portal, com acesso à Revisão 1. A direção aprovada é expandir o caso para até aproximadamente 50 telas, mantendo narrativa e matemática integradas e usando ilustrações como cenários/elementos do HTML, não como páginas estáticas.
 
 ## Current direction
 Aumentar a interatividade e a qualidade pedagógica mantendo navegação simples e linguagem apropriada à aluna.
