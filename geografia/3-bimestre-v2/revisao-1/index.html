@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Geografia • 3º Bimestre V2 • Revisão 1</title>
+<style>
+:root{
+  --bg:#f2f7f1;--card:#ffffff;--ink:#183126;--mut:#66786e;--line:#d7e5db;
+  --p:#2f7d4c;--p2:#dcefe3;--north:#277a79;--south:#8a6b2d;
+  --ok:#177245;--okbg:#e9f7ee;--bad:#a13a34;--badbg:#fff0ee;--shadow:0 18px 45px #24423118;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:
+radial-gradient(circle at 10% 10%,#dff0e5 0 12%,transparent 13%),
+radial-gradient(circle at 90% 20%,#e6f1ec 0 10%,transparent 11%),
+var(--bg);color:var(--ink)}
+button{font:inherit}
+.app{max-width:980px;margin:auto;padding:14px 16px 110px}
+.top{position:sticky;top:0;z-index:20;background:#f2f7f1ee;backdrop-filter:blur(10px);padding:10px 0 9px}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:900;letter-spacing:-.02em}
+.brand small{display:block;color:var(--mut);font-size:.76rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.stats{display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-weight:900;font-size:.88rem;white-space:nowrap}
+.progress{height:8px;background:#dce9df;border-radius:999px;overflow:hidden;margin-top:9px}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--p),#63a477);transition:width .25s ease}
+.card{background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:var(--shadow);padding:clamp(20px,4vw,38px);margin-top:14px;min-height:570px;display:flex;flex-direction:column}
+.eyebrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.badge{display:inline-flex;align-items:center;border-radius:999px;padding:7px 10px;font-size:.78rem;font-weight:900;letter-spacing:.02em}
+.badge.level{background:#f1efe6;color:#6b5728}
+.badge.region{background:#e8f4f0;color:#276451}
+.badge.topic{background:#eef3f7;color:#425e70}
+.qnum{color:var(--mut);font-weight:900;margin-left:auto}
+h1{font-size:clamp(1.45rem,3vw,2.15rem);line-height:1.25;margin:0 0 18px;letter-spacing:-.025em}
+.prompt{font-size:clamp(1.06rem,2vw,1.24rem);line-height:1.52;font-weight:780;margin:0 0 20px}
+.options{display:grid;gap:11px}
+.opt{width:100%;text-align:left;border:2px solid var(--line);background:#fbfdfb;border-radius:16px;padding:14px 16px;cursor:pointer;font-weight:760;line-height:1.35;transition:.16s ease;display:flex;gap:12px;align-items:flex-start}
+.opt:hover:not(:disabled){border-color:#8fbea0;transform:translateY(-1px);box-shadow:0 7px 16px #24423110}
+.opt:disabled{cursor:default}
+.letter{flex:0 0 30px;width:30px;height:30px;border-radius:9px;background:#edf4ef;display:grid;place-items:center;font-weight:950}
+.opt.selected.correct{border-color:#56a477;background:var(--okbg);color:#0f5e38}
+.opt.selected.wrong{border-color:#d18c86;background:var(--badbg);color:#8b302b}
+.opt.reveal{border-color:#7fb998;background:#f0faf4}
+.feedback{display:none;margin-top:18px;border-radius:18px;padding:16px 17px;line-height:1.52;border:1px solid var(--line)}
+.feedback.show{display:block}
+.feedback.ok{background:var(--okbg);border-color:#a8d5b8}
+.feedback.bad{background:var(--badbg);border-color:#e3b4af}
+.feedback strong{display:block;font-size:1.02rem;margin-bottom:5px}
+.jujuba{margin-top:16px;background:#f5f0ff;border:1px solid #ded2f5;border-radius:16px;padding:12px 14px;color:#53436e;font-size:.94rem;line-height:1.45}
+.jujuba b{color:#3f3158}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:#ffffffF0;backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px 14px}
+.navin{max-width:980px;margin:auto;display:flex;justify-content:space-between;gap:10px}
+.nav button,.reset,.pause{border:1px solid var(--line);background:white;border-radius:13px;padding:12px 16px;font-weight:900;cursor:pointer}
+.nav .next{background:var(--p);border-color:var(--p);color:white;min-width:140px}
+.nav button:disabled{opacity:.42;cursor:not-allowed}
+.meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tools{display:flex;gap:7px}
+.pause,.reset{padding:8px 10px;font-size:.82rem}
+.result{display:none}
+.result.show{display:block}
+.scorebig{font-size:clamp(2.8rem,9vw,5.4rem);font-weight:950;line-height:1;letter-spacing:-.05em;color:var(--p);margin:12px 0 4px}
+.sub{color:var(--mut);font-weight:750}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:22px 0}
+.box{background:#f7faf7;border:1px solid var(--line);border-radius:15px;padding:14px}
+.box b{display:block;font-size:1.1rem;margin-bottom:4px}
+.review{background:#fff8e7;border:1px solid #ead7a5;border-radius:17px;padding:15px 16px;line-height:1.48}
+.restart{margin-top:18px;background:var(--p);color:#fff;border:0;border-radius:14px;padding:13px 18px;font-weight:900;cursor:pointer}
+.kbd{color:var(--mut);font-size:.8rem;margin-top:auto;padding-top:18px}
+@media(max-width:700px){
+  .app{padding:10px 10px 104px} .card{min-height:0;border-radius:20px;padding:20px 16px}
+  .topline{align-items:flex-start} .stats{gap:5px} .pill{padding:6px 8px;font-size:.78rem}
+  .tools{width:100%;justify-content:flex-end} .qnum{width:100%;margin-left:0}
+  .navin button{flex:1} .brand small{display:none} .kbd{display:none}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="topline">
+      <div class="brand">Geografia • Revisão 1<small>3º Bimestre V2 • Simulado de reta final</small></div>
+      <div class="stats">
+        <span class="pill" id="pg">1/40</span>
+        <span class="pill">⭐ <b id="score">0</b></span>
+        <span class="pill">⏱ <b id="timer">00:00</b></span>
+      </div>
+    </div>
+    <div class="topline" style="margin-top:7px">
+      <div class="meta"><span style="font-size:.82rem;color:var(--mut);font-weight:800">Material oficial enviado • Sudeste + Norte</span></div>
+      <div class="tools"><button class="pause" id="pauseBtn" onclick="togglePause()">Pausar</button><button class="reset" onclick="restart()">Reiniciar</button></div>
+    </div>
+    <div class="progress"><i id="bar"></i></div>
+  </header>
+
+  <main>
+    <section class="card" id="quizCard">
+      <div class="eyebrow">
+        <span class="badge level" id="level"></span>
+        <span class="badge region" id="region"></span>
+        <span class="badge topic" id="topic"></span>
+        <span class="qnum" id="qnum"></span>
+      </div>
+      <h1 id="phaseTitle"></h1>
+      <p class="prompt" id="question"></p>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback"></div>
+      <div class="jujuba" id="jujuba"><b>Jujuba:</b> responda primeiro com o que você sabe. A explicação aparece logo depois.</div>
+      <div class="kbd">Atalhos: A, B, C ou D para responder • ← e → para navegar quando a questão já estiver resolvida.</div>
+    </section>
+
+    <section class="card result" id="resultCard">
+      <div class="eyebrow"><span class="badge region">Missão concluída</span></div>
+      <h1>Resultado do simulado</h1>
+      <div class="scorebig" id="finalScore"></div>
+      <div class="sub" id="finalSub"></div>
+      <div class="grid" id="summaryGrid"></div>
+      <div class="review" id="reviewBox"></div>
+      <div class="jujuba" id="finalJujuba"></div>
+      <button class="restart" onclick="restart()">Refazer as 40 questões</button>
+    </section>
+  </main>
+</div>
+
+<nav class="nav">
+  <div class="navin">
+    <button id="prevBtn" onclick="go(-1)">← Anterior</button>
+    <button class="next" id="nextBtn" onclick="go(1)" disabled>Próxima →</button>
+  </div>
+</nav>
+
+<script>
+const Q=[{"level":"Fácil","region":"Sudeste","topic":"PIB","q":"Em 2021, qual região respondeu por 56,6% do PIB brasileiro, segundo o gráfico do material?","exp":"O Sudeste aparece com 56,6% do PIB nacional em 2021. Pense no PIB como uma pizza: mais da metade das fatias estava ligada à economia do Sudeste.","n":1,"opts":["Região Sul","Região Nordeste","Região Centro-Oeste","Região Sudeste"],"ans":3},{"level":"Fácil","region":"Sudeste","topic":"PIB por estado","q":"No gráfico de 2021, qual estado do Sudeste tinha a maior participação no PIB do Brasil?","exp":"São Paulo aparece com 26%, a maior parcela entre os quatro estados do Sudeste. É como se, em cada R$ 100 produzidos no país, cerca de R$ 26 viessem de São Paulo.","n":2,"opts":["São Paulo, com 26%","Rio de Janeiro, com 14,6%","Minas Gerais, com 13%","Espírito Santo, com 3%"],"ans":0},{"level":"Fácil","region":"Sudeste","topic":"Setor primário","q":"Qual atividade pertence ao setor primário da economia, conforme o capítulo sobre o Sudeste?","exp":"O setor primário retira ou produz bens diretamente ligados à natureza, como agricultura e pecuária. A indústria transforma; o comércio e os serviços distribuem ou atendem.","n":3,"opts":["Agricultura e pecuária","Comércio e bancos","Indústria automobilística","Serviços de transporte urbano"],"ans":0},{"level":"Fácil","region":"Sudeste","topic":"Petróleo","q":"Qual estado é apontado como o maior produtor nacional de petróleo e gás natural e responde por mais de 83% da produção de petróleo em águas marítimas?","exp":"O material destaca o Rio de Janeiro. A imagem das plataformas ajuda a lembrar: boa parte dessa produção acontece no mar, diante do litoral fluminense.","n":4,"opts":["Minas Gerais","São Paulo","Espírito Santo","Rio de Janeiro"],"ans":3},{"level":"Fácil","region":"Sudeste","topic":"Mineração","q":"Em qual estado se localiza o Quadrilátero Ferrífero?","exp":"O Quadrilátero Ferrífero fica em Minas Gerais e é uma das principais áreas de mineração de ferro do Brasil. O próprio nome 'ferrífero' entrega a pista: ferro.","n":5,"opts":["Rio de Janeiro","Espírito Santo","São Paulo","Minas Gerais"],"ans":3},{"level":"Fácil","region":"Sudeste","topic":"Porto de Santos","q":"O Porto de Santos, importante para importações e exportações brasileiras, fica em qual estado?","exp":"O Porto de Santos fica no litoral paulista. Ele funciona como uma grande 'porta' de entrada e saída de mercadorias do país.","n":6,"opts":["Espírito Santo","Rio de Janeiro","São Paulo","Minas Gerais"],"ans":2},{"level":"Fácil","region":"Norte","topic":"Organização regional","q":"Quantos estados formam a Região Norte do Brasil?","exp":"A Região Norte é formada por Acre, Amapá, Amazonas, Pará, Rondônia, Roraima e Tocantins: sete estados.","n":7,"opts":["Sete","Cinco","Seis","Nove"],"ans":0},{"level":"Fácil","region":"Norte","topic":"Clima","q":"Qual é o clima predominante na maior parte da Região Norte?","exp":"O clima equatorial úmido domina grande parte da Região Norte: calor, muita umidade e chuvas elevadas ao longo do ano.","n":8,"opts":["Equatorial úmido","Mediterrâneo","Semiárido","Subtropical"],"ans":0},{"level":"Fácil","region":"Norte","topic":"Vegetação","q":"Qual subdivisão da Floresta Amazônica ocupa áreas permanentemente alagadas junto aos rios?","exp":"A mata de igapó vive com os 'pés na água' durante praticamente todo o tempo. A várzea alaga em certos períodos; a terra firme fica nas áreas mais altas.","n":9,"opts":["Mata de terra firme","Mata de várzea","Mata de igapó","Cerrado"],"ans":2},{"level":"Fácil","region":"Norte","topic":"Zona Franca de Manaus","q":"Qual foi um dos principais objetivos da Zona Franca de Manaus?","exp":"A Zona Franca de Manaus foi criada para atrair empresas e investimentos, principalmente por meio de incentivos fiscais. A ideia era diminuir desvantagens de localização e estimular a economia regional.","n":10,"opts":["Impedir a instalação de indústrias na Amazônia","Atrair investimentos e promover o desenvolvimento econômico regional","Substituir Manaus por Belém como capital regional","Eliminar o comércio com outras regiões"],"ans":1},{"level":"Médio","region":"Sudeste","topic":"Formação econômica","q":"Qual conjunto reúne fatores históricos citados no material para explicar a liderança econômica do Sudeste?","exp":"O capítulo relaciona a força econômica do Sudeste a processos históricos, entre eles mineração, mudança da capital de Salvador para o Rio de Janeiro e cafeicultura. É uma sequência de atividades que acumulou população, infraestrutura e capital.","n":11,"opts":["Cultivo de trigo, construção de Brasília e pesca oceânica","Borracha, criação de gado no Sertão e indústria naval amazônica","Extração de sal, ciclo do algodão nordestino e mineração no Amapá","Mineração, transferência da capital para o Rio de Janeiro e expansão do café"],"ans":3},{"level":"Médio","region":"Sudeste","topic":"Desconcentração industrial","q":"O mapa de 2007 a 2018 mostra queda de 7,7% na participação industrial do Sudeste e crescimento nas demais regiões. Qual interpretação é a mais correta?","exp":"Perder participação não significa 'ficar sem indústria'. Imagine uma corrida em que outros corredores aceleram: o líder pode continuar forte, mas sua vantagem relativa diminui.","n":12,"opts":["A indústria desapareceu do Sudeste","Todas as fábricas do Sudeste foram transferidas para o Sul","Houve desconcentração industrial: outras regiões ganharam participação relativa","O Sudeste deixou de ser uma região industrializada"],"ans":2},{"level":"Médio","region":"Sudeste","topic":"Agropecuária","q":"Qual associação entre estado e destaque agropecuário está de acordo com o material?","exp":"O texto destaca São Paulo como grande produtor de laranja e cana-de-açúcar e Minas Gerais como maior produtor de café. O Sudeste não é só indústria: o campo também usa bastante tecnologia.","n":13,"opts":["São Paulo: café; Minas Gerais: petróleo","São Paulo: laranja e cana-de-açúcar; Minas Gerais: café","Rio de Janeiro: cana-de-açúcar; Espírito Santo: minério de ferro","Espírito Santo: trigo; Minas Gerais: arroz"],"ans":1},{"level":"Médio","region":"Sudeste","topic":"Royalties","q":"No contexto do petróleo, o que são royalties?","exp":"Royalties são pagamentos ligados à exploração de um recurso. Uma boa imagem mental é a de 'compensação pelo uso do patrimônio natural': quem explora paga uma parcela aos entes públicos.","n":14,"opts":["Indenizações pagas aos governos pela exploração de recursos como petróleo e gás","Impostos cobrados apenas de consumidores de combustíveis","Lucros privados distribuídos somente aos trabalhadores das plataformas","Multas aplicadas sempre que ocorre um vazamento de petróleo"],"ans":0},{"level":"Médio","region":"Sudeste","topic":"Quadrilátero Ferrífero","q":"Segundo o material, para onde pode seguir o minério produzido no Quadrilátero Ferrífero?","exp":"Parte do minério abastece siderúrgicas, como as citadas em Cubatão e Volta Redonda, e parte segue para exportação pelo Porto de Tubarão, no Espírito Santo.","n":15,"opts":["Somente para fazendas de café de Minas Gerais","Exclusivamente para o Porto de Santos, sem uso no mercado interno","Para siderúrgicas no mercado interno e para exportação pelo Porto de Tubarão","Apenas para refinarias de petróleo do Rio de Janeiro"],"ans":2},{"level":"Médio","region":"Sudeste","topic":"Urbanização e riscos","q":"Por que a combinação de chuvas intensas e relevo de morros e serras aumenta o risco de deslizamentos no Sudeste?","exp":"A encosta funciona quase como um bolo inclinado: se o solo fica muito encharcado e perde 'amarrações' das raízes, parte dele pode deslizar. Ocupação irregular e retirada de vegetação pioram o problema.","n":16,"opts":["Porque toda chuva transforma imediatamente rochas em lava","A água encharca o solo inclinado, e a retirada da vegetação pode reduzir sua estabilidade","Porque áreas inclinadas impedem completamente a entrada de água no solo","Porque a chuva faz desaparecer a gravidade nas encostas"],"ans":1},{"level":"Médio","region":"Sudeste","topic":"Impermeabilização","q":"Nas cidades, de que modo asfalto e concreto podem aumentar o risco de enchentes?","exp":"Quando o chão vira uma 'tampa' de asfalto e concreto, menos água entra no solo. Mais água corre pela superfície ao mesmo tempo, sobrecarregando bueiros, córregos e rios.","n":17,"opts":["Reduzem a infiltração e fazem a água escoar mais rapidamente para rios e córregos","Fazem a água evaporar antes de chegar aos rios","Transformam rios em águas subterrâneas","Diminuem automaticamente o volume das chuvas"],"ans":0},{"level":"Médio","region":"Sudeste","topic":"Barragens","q":"Qual relação entre desastre, ano e rio está correta?","exp":"Mariana ocorreu em 2015 e atingiu o Rio Doce. Brumadinho ocorreu em 2019 e atingiu o Rio Paraopeba. Separar os pares é importante porque as duas tragédias são parecidas, mas não iguais.","n":18,"opts":["Brumadinho, 2015: rejeitos alcançaram o Rio Doce","Mariana, 2019: rejeitos alcançaram o Rio Paraopeba","Brumadinho, 2000: rejeitos chegaram à Baía de Guanabara","Mariana, 2015: rejeitos alcançaram o Rio Doce"],"ans":3},{"level":"Médio","region":"Sudeste","topic":"Problemas ambientais","q":"Qual medida ajuda diretamente a reduzir riscos de enchentes e deslizamentos em áreas urbanas?","exp":"A solução é um conjunto: vegetação ajuda a segurar o solo, drenagem organiza a água e planejamento urbano evita colocar pessoas onde o terreno é perigoso.","n":19,"opts":["Asfaltar todas as áreas verdes para acelerar o escoamento","Preservar vegetação, melhorar drenagem e evitar ocupação de áreas de risco","Construir moradias nas encostas mais íngremes","Retirar a vegetação para deixar o solo exposto ao sol"],"ans":1},{"level":"Médio","region":"Sudeste","topic":"Petróleo e ambiente","q":"O vazamento de óleo de 2000 na Baía de Guanabara mostrou que a atividade petrolífera pode afetar:","exp":"O óleo não fica parado num ponto. Ele pode se espalhar pela água e atingir ecossistemas costeiros e a pesca, afetando também o trabalho de muitas famílias.","n":20,"opts":["Apenas as plataformas, sem efeitos no litoral","Somente o preço do petróleo, sem impactos ambientais","Praias, manguezais, restingas, pesca e comunidades humanas","Exclusivamente o clima de Minas Gerais"],"ans":2},{"level":"Médio","region":"Norte","topic":"Amazônia Legal","q":"Qual frase diferencia corretamente Floresta Amazônica e Amazônia Legal?","exp":"Uma é natureza; a outra é recorte administrativo. É como comparar 'a floresta que existe no terreno' com 'uma área desenhada no mapa para organizar políticas públicas'.","n":21,"opts":["São exatamente a mesma área e têm a mesma finalidade","A Amazônia Legal existe apenas fora do Brasil","A Floresta Amazônica é uma divisão política criada pelo governo","A Floresta Amazônica é uma formação natural; a Amazônia Legal é uma delimitação criada para planejamento e políticas públicas"],"ans":3},{"level":"Médio","region":"Norte","topic":"Território e população","q":"A Região Norte ocupa grande parte do território brasileiro, mas tem baixa densidade demográfica. O que isso significa?","exp":"Densidade demográfica é população dividida pela área. Uma região pode ser enorme e, ainda assim, ter poucos habitantes por quilômetro quadrado.","n":22,"opts":["A região possui pouca área e muita população","Todos os habitantes vivem igualmente distantes uns dos outros","Há poucos habitantes, em média, distribuídos por uma área muito extensa","A região não possui cidades grandes"],"ans":2},{"level":"Médio","region":"Norte","topic":"Clima","q":"Em comparação com o equatorial úmido, o clima tropical presente em partes da Região Norte tende a apresentar:","exp":"O material indica que áreas de clima tropical têm índices de chuva menores e uma estação seca mais evidente. Não significa 'deserto'; significa alternância mais clara entre períodos.","n":23,"opts":["Menor quantidade de chuvas e uma estação seca mais marcada","Chuvas maiores que 3.000 mm em todos os meses","Temperaturas sempre abaixo de 10 °C","Ausência total de estação chuvosa"],"ans":0},{"level":"Médio","region":"Norte","topic":"Clima","q":"Por que a amplitude térmica anual costuma ser baixa em grande parte da Região Norte?","exp":"Perto da faixa equatorial, o calor é bastante constante ao longo do ano. A diferença entre os meses mais quentes e mais frios costuma ser pequena.","n":24,"opts":["Porque a região passa metade do ano coberta de neve","Porque as temperaturas permanecem elevadas e variam relativamente pouco ao longo do ano","Porque não há influência da latitude sobre o clima","Porque todas as cidades têm exatamente a mesma temperatura"],"ans":1},{"level":"Médio","region":"Norte","topic":"Vegetação","q":"Qual comparação entre várzea e terra firme está correta?","exp":"Várzea é o 'meio-termo': alaga em épocas de cheia. Terra firme fica acima das áreas normalmente inundadas. Igapó é o que permanece alagado por mais tempo.","n":25,"opts":["A terra firme fica permanentemente alagada; a várzea nunca recebe água","As duas são sempre alagadas durante todo o ano","A várzea sofre alagamentos periódicos; a terra firme ocupa áreas mais altas e não costuma alagar","A várzea é um tipo de clima, e terra firme é um tipo de rocha"],"ans":2},{"level":"Médio","region":"Norte","topic":"Rios voadores","q":"O que o livro chama de 'rios voadores'?","exp":"Eles não são rios com margens e peixes. São corredores invisíveis de vapor d'água na atmosfera, alimentados pela umidade do oceano e pela evapotranspiração da floresta.","n":26,"opts":["Fluxos de umidade na atmosfera que transportam vapor d'água da Amazônia para outras áreas","Rios subterrâneos que surgem apenas na época seca","Canais artificiais construídos para levar água ao Sudeste","Nuvens que se transformam em rios permanentes no alto das montanhas"],"ans":0},{"level":"Médio","region":"Norte","topic":"Rios voadores","q":"Qual papel da Floresta Amazônica ajuda a alimentar os 'rios voadores'?","exp":"A floresta funciona como uma imensa 'bomba de água' biológica: puxa água do solo e devolve parte dela à atmosfera pelas folhas.","n":27,"opts":["As árvores liberam vapor d'água por evapotranspiração, aumentando a umidade do ar","As árvores bloqueiam completamente a evaporação","As raízes transformam água em petróleo","A floresta impede que nuvens se formem"],"ans":0},{"level":"Médio","region":"Norte","topic":"Relevo","q":"Qual afirmação sobre o relevo da Região Norte está correta?","exp":"O Norte tem relevo variado. O Pico da Neblina, com 2.995 m segundo o material, mostra que 'Amazônia' não significa terreno totalmente plano.","n":28,"opts":["Toda a Região Norte é uma grande planície sem áreas elevadas","A região é formada apenas por montanhas jovens","O ponto mais alto da região fica no litoral do Pará","A região possui planícies, planaltos e depressões, e o Pico da Neblina é seu ponto mais elevado"],"ans":3},{"level":"Médio","region":"Norte","topic":"Hidrografia","q":"Qual é a principal característica da Região Hidrográfica Amazônica destacada no material?","exp":"A rede amazônica é gigantesca. Os rios funcionam como muitas 'veias' conectadas, levando água por uma área imensa até o Oceano Atlântico.","n":29,"opts":["É formada apenas por rios temporários","Não possui ligação com a Bacia Amazônica","Ela integra a maior rede hidrográfica do Brasil e do mundo e reúne rios que drenam para o Atlântico","Está inteiramente fora da Região Norte"],"ans":2},{"level":"Médio","region":"Norte","topic":"Tocantins-Araguaia","q":"A instalação de hidrelétricas na região Tocantins-Araguaia pode gerar qual combinação de efeitos mencionada no livro?","exp":"Uma hidrelétrica produz energia, mas altera rios e territórios. Por isso, o mesmo projeto pode trazer eletricidade e também gerar conflitos e impactos que precisam ser avaliados.","n":30,"opts":["Somente benefícios, sem mudanças ambientais","Aumento obrigatório das chuvas em toda a Amazônia","Produção de energia, mas também impactos ambientais e conflitos com populações locais","Fim da navegação em todos os rios da Região Norte"],"ans":2},{"level":"Difícil","region":"Sudeste","topic":"Desconcentração industrial","q":"Entre 2007 e 2018, o Sudeste perdeu 7,7 pontos de participação industrial, enquanto Norte, Nordeste, Centro-Oeste e Sul ganharam participação. Qual conclusão NÃO pode ser tirada apenas desses dados?","exp":"Participação é uma fração do total. Ela pode cair mesmo se a produção crescer, caso as outras regiões cresçam mais rápido. É a diferença entre 'ter menos fatias da pizza' e 'a pizza inteira ter encolhido'.","n":31,"opts":["Que houve redistribuição relativa da atividade industrial entre as regiões","Que a produção industrial do Sudeste necessariamente caiu em quantidade absoluta","Que o Sudeste perdeu participação no total industrial brasileiro","Que outras regiões ampliaram sua participação relativa no período"],"ans":1},{"level":"Difícil","region":"Sudeste","topic":"PIB por estado","q":"Somando as participações de São Paulo (26%), Rio de Janeiro (14,6%), Minas Gerais (13%) e Espírito Santo (3%), o resultado coincide com qual dado do material?","exp":"26 + 14,6 + 13 + 3 = 56,6. O gráfico regional e o gráfico por estado conversam entre si: as quatro parcelas formam o total do Sudeste.","n":32,"opts":["58%, a participação exata do Sudeste em 1999","43,6%, a participação dos três maiores estados sem o Espírito Santo","60%, a participação arredondada obrigatória do Sudeste","56,6%, a participação da Região Sudeste no PIB nacional em 2021"],"ans":3},{"level":"Difícil","region":"Sudeste","topic":"Porto de Santos","q":"Qual sequência histórica está mais de acordo com o texto sobre a formação do Porto de Santos?","exp":"O porto cresceu junto com a necessidade de escoar a produção. Caminhos e ferrovia encurtaram a ligação entre interior e litoral, e depois o porto foi modernizado para movimentar volumes cada vez maiores.","n":33,"opts":["Ferrovia Santos-Jundiaí → descoberta do petróleo → fundação de Brasília → cultivo de café","Modernização do porto → início da colonização → Calçada do Lorena → desaparecimento das exportações","Crescimento da produção agrícola paulista → melhoria da ligação com o planalto → ferrovia Santos-Jundiaí → modernização do porto","Descoberta de ouro em Manaus → construção de hidrelétricas → ferrovia → expansão do açúcar"],"ans":2},{"level":"Difícil","region":"Sudeste","topic":"Impactos ambientais","q":"Qual comparação distingue corretamente dois tipos de impacto estudados no Sudeste?","exp":"Os riscos são diferentes porque as atividades também são. O petróleo pode espalhar óleo pela água e litoral; a mineração pode liberar rejeitos e metais em solo e rios. Receber royalties não funciona como um 'escudo ambiental'.","n":34,"opts":["Petróleo afeta apenas o ar; mineração afeta apenas o oceano","Vazamentos de petróleo podem contaminar ambientes costeiros; rejeitos de mineração podem contaminar solos, aquíferos e rios","Ambos os impactos ocorrem somente quando há enchentes urbanas","Royalties impedem que qualquer impacto ambiental aconteça"],"ans":1},{"level":"Difícil","region":"Sudeste","topic":"Riscos urbanos","q":"Qual cadeia de causa e efeito representa melhor o processo descrito para enchentes e deslizamentos no Sudeste?","exp":"São dois caminhos que podem acontecer juntos: na encosta, água e perda de vegetação reduzem estabilidade; na cidade impermeabilizada, a água corre rápido para os canais. Quando os dois problemas se encontram, o risco cresce.","n":35,"opts":["Chuva intensa → solo fica sempre mais firme; asfalto → mais infiltração e menos enchentes","Retirada de vegetação → raízes aumentam; concreto → rios recebem menos água","Ocupação de encostas → diminui a gravidade; drenagem → aumenta automaticamente os deslizamentos","Chuva intensa + relevo inclinado + retirada de vegetação/ocupação irregular → solo instável e maior risco de deslizamento; impermeabilização → mais escoamento e enchentes"],"ans":3},{"level":"Difícil","region":"Norte","topic":"Amazônia Legal","q":"Uma pessoa afirma: 'Se uma área está dentro da Amazônia Legal, então obrigatoriamente é coberta por Floresta Amazônica'. Por que essa frase está errada?","exp":"O limite da Amazônia Legal foi desenhado para políticas públicas, não para seguir exatamente o limite da floresta. Por isso, o recorte pode alcançar áreas de Cerrado e outras paisagens.","n":36,"opts":["Porque a Amazônia Legal é um recorte político-administrativo e pode incluir áreas com outras formações vegetais","Porque a Amazônia Legal existe somente fora do Brasil","Porque a Floresta Amazônica não ocorre na Região Norte","Porque a Amazônia Legal é menor que qualquer estado da Região Norte"],"ans":0},{"level":"Difícil","region":"Norte","topic":"Clima e rios voadores","q":"Qual sequência explica melhor, segundo o material, como a Amazônia pode influenciar chuvas em áreas distantes?","exp":"É um circuito atmosférico, não um rio suspenso literal. Umidade entra, é reciclada pela floresta e viaja com os ventos. Os Andes funcionam como uma grande parede que ajuda a desviar fluxos.","n":37,"opts":["Andes produzem água → rios evaporam apenas no Sul → umidade retorna ao Atlântico sem passar pela Amazônia","Ventos trazem umidade do Atlântico → floresta recicla água por evapotranspiração → fluxos de vapor avançam pelo continente → relevo dos Andes ajuda a redirecionar parte dessa umidade","Oceano Pacífico envia neve → floresta transforma neve em chuva → umidade fica presa no Norte","Rios amazônicos sobem para a atmosfera como canais inteiros → atravessam os Andes → caem no oceano"],"ans":1},{"level":"Difícil","region":"Norte","topic":"Hidrografia e aquíferos","q":"Qual alternativa diferencia corretamente a Região Hidrográfica Amazônica e o Sistema Aquífero Grande Amazônia (SAGA)?","exp":"Pense em dois andares de uma casa: os rios estão na superfície; o aquífero é água guardada em camadas subterrâneas de rocha e sedimentos. A chuva elevada ajuda a recarregar esse reservatório.","n":38,"opts":["Os dois nomes indicam exatamente o mesmo rio","A primeira reúne principalmente águas superficiais e rios; o SAGA armazena água subterrânea em formações sedimentares","A Região Hidrográfica Amazônica é subterrânea, e o SAGA é um conjunto de rios de superfície","O SAGA é uma hidrelétrica instalada no Rio Tocantins"],"ans":1},{"level":"Difícil","region":"Norte","topic":"Povos indígenas e cultura","q":"O material informa que a Região Norte tem a maior população indígena entre as regiões brasileiras e cita municípios com mais de 90% de população autodeclarada indígena. Qual conclusão é mais cuidadosa?","exp":"Um dado local não deve virar uma regra para a região inteira. Alguns municípios têm maioria indígena, enquanto o Norte como um todo reúne muitos grupos e populações diferentes. O capítulo também destaca a influência indígena na cultura brasileira.","n":39,"opts":["Todos os municípios da Região Norte têm mais de 90% de população indígena","A presença indígena é muito importante e pode ser majoritária em alguns municípios, mas isso não significa que toda a população do Norte seja majoritariamente indígena","A presença indígena existe apenas em áreas rurais sem cidades","A cultura indígena não influencia a cultura brasileira fora da Região Norte"],"ans":1},{"level":"Difícil","region":"Norte","topic":"Unidades de conservação","q":"Qual comparação entre o Parque Nacional Montanhas do Tumucumaque e a Reserva Extrativista Chico Mendes está correta?","exp":"Proteção integral prioriza preservar e pesquisar, com exploração econômica muito restrita. Uso sustentável permite retirar recursos dentro de limites. A Reserva Chico Mendes é um exemplo de uso que busca manter a floresta em pé enquanto sustenta comunidades tradicionais.","n":40,"opts":["Os dois permitem exploração econômica livre e sem regras","A reserva é de proteção integral e proíbe qualquer uso de recursos; o parque é de uso sustentável","Nenhum dos dois tem relação com conservação ambiental","O parque é de proteção integral; a reserva permite uso sustentável dos recursos conforme regras e plano de manejo"],"ans":3}];
+const STORE="hs_geo_3b_v2_r1";
+const letters=["A","B","C","D"];
+let state={index:0,answers:Array(Q.length).fill(null),started:true};
+let seconds=0,paused=false,tick=null;
+
+function load(){
+  try{
+    const s=JSON.parse(localStorage.getItem(STORE)||"null");
+    if(s && Array.isArray(s.answers) && s.answers.length===Q.length){
+      state=s;
+      const firstUnanswered=state.answers.findIndex(v=>v===null);
+      if(firstUnanswered>=0 && state.index>firstUnanswered) state.index=firstUnanswered;
+    }
+  }catch(e){}
+}
+function save(){localStorage.setItem(STORE,JSON.stringify(state));}
+function fmt(t){const m=Math.floor(t/60).toString().padStart(2,"0"),s=(t%60).toString().padStart(2,"0");return m+":"+s}
+function runTimer(){
+  clearInterval(tick);
+  tick=setInterval(()=>{if(!paused){seconds++;document.getElementById("timer").textContent=fmt(seconds)}},1000);
+}
+function togglePause(){
+  paused=!paused;
+  document.getElementById("pauseBtn").textContent=paused?"Continuar":"Pausar";
+}
+function phase(i){
+  if(i<10)return "Aquecimento: fundamentos";
+  if(i<30)return "Treino de prova: atenção aos detalhes";
+  return "Desafio final: alternativas quase gêmeas";
+}
+function render(){
+  if(state.index>=Q.length) return showResult();
+  document.getElementById("quizCard").style.display="flex";
+  document.getElementById("resultCard").classList.remove("show");
+  const q=Q[state.index], chosen=state.answers[state.index];
+  document.getElementById("pg").textContent=(state.index+1)+"/"+Q.length;
+  document.getElementById("bar").style.width=((state.index+1)/Q.length*100)+"%";
+  document.getElementById("level").textContent=q.level;
+  document.getElementById("region").textContent=q.region;
+  document.getElementById("topic").textContent=q.topic;
+  document.getElementById("qnum").textContent="Questão "+(state.index+1);
+  document.getElementById("phaseTitle").textContent=phase(state.index);
+  document.getElementById("question").textContent=q.q;
+  const opts=document.getElementById("options"); opts.innerHTML="";
+  q.opts.forEach((txt,i)=>{
+    const b=document.createElement("button");
+    b.className="opt";
+    b.innerHTML='<span class="letter">'+letters[i]+'</span><span>'+txt+'</span>';
+    if(chosen!==null){
+      b.disabled=true;
+      if(i===chosen) b.classList.add("selected", chosen===q.ans?"correct":"wrong");
+      if(chosen!==q.ans && i===q.ans) b.classList.add("reveal");
+    } else {
+      b.onclick=()=>answer(i);
+    }
+    opts.appendChild(b);
+  });
+  const fb=document.getElementById("feedback");
+  if(chosen===null){
+    fb.className="feedback"; fb.innerHTML="";
+    document.getElementById("jujuba").innerHTML="<b>Jujuba:</b> leia as quatro alternativas até o fim. Nas questões médias e difíceis, duas podem parecer boas, mas só uma combina com todos os detalhes do material.";
+  } else {
+    const ok=chosen===q.ans;
+    fb.className="feedback show "+(ok?"ok":"bad");
+    fb.innerHTML="<strong>"+(ok?"✅ Certo!":"❌ Não foi dessa vez. A correta é "+letters[q.ans]+".")+"</strong>"+q.exp;
+    document.getElementById("jujuba").innerHTML=ok
+      ? "<b>Jujuba:</b> boa. Não guarde só a letra: guarde o motivo. É isso que salva quando a prova troca as palavras."
+      : "<b>Jujuba:</b> marque mentalmente a pista que decidiu a questão. O erro útil é aquele que vira uma regra simples na cabeça.";
+  }
+  document.getElementById("prevBtn").disabled=state.index===0;
+  const next=document.getElementById("nextBtn");
+  next.disabled=chosen===null;
+  next.textContent=state.index===Q.length-1?"Ver resultado →":"Próxima →";
+  document.getElementById("score").textContent=score();
+}
+function answer(i){
+  if(state.answers[state.index]!==null)return;
+  state.answers[state.index]=i; save(); render();
+}
+function go(d){
+  if(d>0 && state.answers[state.index]===null)return;
+  state.index=Math.max(0,Math.min(Q.length,state.index+d));
+  save(); render(); window.scrollTo({top:0,behavior:"smooth"});
+}
+function score(){
+  return state.answers.reduce((n,a,i)=>n+(a===Q[i].ans?1:0),0);
+}
+function statFilter(key,val){
+  const idx=Q.map((q,i)=>q[key]===val?i:-1).filter(i=>i>=0);
+  const hit=idx.filter(i=>state.answers[i]===Q[i].ans).length;
+  return {hit,total:idx.length};
+}
+function showResult(){
+  document.getElementById("quizCard").style.display="none";
+  document.getElementById("resultCard").classList.add("show");
+  document.getElementById("pg").textContent="40/40";
+  document.getElementById("bar").style.width="100%";
+  document.getElementById("prevBtn").disabled=false;
+  document.getElementById("nextBtn").disabled=true;
+  document.getElementById("nextBtn").textContent="Concluído";
+  const s=score(), pct=Math.round(s/Q.length*100);
+  document.getElementById("finalScore").textContent=s+"/40";
+  document.getElementById("finalSub").textContent=pct+"% de acertos • tempo desta sessão: "+fmt(seconds);
+  const cards=[];
+  [["region","Sudeste"],["region","Norte"],["level","Fácil"],["level","Médio"],["level","Difícil"]].forEach(([k,v])=>{
+    const st=statFilter(k,v); cards.push('<div class="box"><b>'+v+'</b>'+st.hit+' de '+st.total+' corretas</div>');
+  });
+  document.getElementById("summaryGrid").innerHTML=cards.join("");
+  const misses={};
+  Q.forEach((q,i)=>{if(state.answers[i]!==q.ans)misses[q.topic]=(misses[q.topic]||0)+1});
+  const list=Object.entries(misses).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  document.getElementById("reviewBox").innerHTML=list.length
+    ? "<b>Revisão-relâmpago recomendada:</b> "+list.map(x=>x[0]+" ("+x[1]+" erro"+(x[1]>1?"s":"")+")").join(" • ")
+    : "<b>Revisão-relâmpago:</b> nenhum ponto crítico apareceu. Você acertou tudo.";
+  let msg=pct>=85
+    ?"Excelente reta final. Agora vale revisar apenas os tópicos em que escorregou, sem recomeçar a matéria inteira."
+    : pct>=65
+    ?"Bom mapa do que já está firme. Releia as explicações das questões erradas e faça uma segunda rodada só depois."
+    :"O simulado encontrou os buracos antes da prova, que é exatamente o trabalho dele. Priorize os tópicos listados acima e refaça.";
+  document.getElementById("finalJujuba").innerHTML="<b>Jujuba:</b> "+msg;
+}
+function restart(){
+  if(!confirm("Reiniciar o simulado e apagar as respostas salvas?"))return;
+  localStorage.removeItem(STORE);
+  state={index:0,answers:Array(Q.length).fill(null),started:true};
+  seconds=0;paused=false;document.getElementById("pauseBtn").textContent="Pausar";document.getElementById("timer").textContent="00:00";
+  render();window.scrollTo({top:0,behavior:"smooth"});
+}
+document.addEventListener("keydown",e=>{
+  if(state.index>=Q.length) return;
+  if(["a","b","c","d"].includes(e.key.toLowerCase()) && state.answers[state.index]===null){
+    answer(["a","b","c","d"].indexOf(e.key.toLowerCase()));
+  } else if(e.key==="ArrowRight" && state.answers[state.index]!==null) go(1);
+  else if(e.key==="ArrowLeft") go(-1);
+});
+load();render();runTimer();
+</script>
+</body>
+</html>
