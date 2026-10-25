@@ -38,6 +38,8 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 
 - Em 2026-10-25, a Home foi reorganizada por bimestre: 4º bimestre aparece acima com História; 3º bimestre agrupa as sete matérias anteriores dentro de uma seção `<details>` fechada por padrão, sem remover links existentes. A apresentação inicial e as orientações de navegação foram atualizadas.
 
+- História do 4º bimestre ganhou Revisão 2 em `historia/4-bimestre/revisao-2/index.html`: 36 questões de múltipla escolha inéditas, dificuldade progressiva (12 fundamentos, 14 interpretação, 10 desafio avançado), alternativas próximas, feedback, persistência, cronômetro e diagnóstico por bloco e nível. A Home agora oferece Revisão 1 e Revisão 2 lado a lado. Revisão 2 publicada em 2026-10-25; validação visual em navegador pendente.
+
 ## Current direction
 Aumentar a interatividade e a qualidade pedagógica mantendo navegação simples e linguagem apropriada à aluna.
 
