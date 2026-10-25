@@ -2,7 +2,7 @@
 
 > **AGENT INSTRUCTION:** Leia este arquivo antes de executar trabalho relevante neste projeto. O estado descrito aqui prevalece sobre contexto histórico de conversas, salvo quando código, conteúdo versionado ou evidência mais recente demonstrarem o contrário. Nesse caso, corrija este arquivo na mesma tarefa.
 
-Updated: 2026-09-27
+Updated: 2026-10-25
 
 ## Purpose
 Portal de estudos interativo, organizado por matérias, para uso direto pela aluna no computador.
@@ -33,6 +33,8 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 - Geografia possui a Revisão 1 do 3º Bimestre V2 criada em 2026-09-27 como simulado de reta final, baseada nas fotos do material oficial recebidas para os capítulos sobre Região Sudeste e Região Norte. A página contém 40 questões de múltipla escolha em progressão explícita de dificuldade (10 fáceis, 20 médias e 10 difíceis), sempre com quatro alternativas, feedback imediato de certo/errado e explicação em linguagem simples sem perder profundidade. As questões médias usam distratores plausíveis e as difíceis aproximam ainda mais as alternativas e exigem relações entre dados, causas e consequências. O simulado inclui barra de progresso, pontuação, cronômetro com pausa, navegação bloqueada até responder, persistência local, atalhos de teclado, relatório final por região e nível de dificuldade e indicação dos tópicos com mais erros. As respostas corretas foram distribuídas igualmente entre A/B/C/D (10 em cada posição). A página está publicada em `geografia/3-bimestre-v2/revisao-1/index.html` e, em 2026-09-27, foi adicionada à Home como primeira matéria, pois sua prova é em 28/09.
 
 - A Home passou a ordenar as matérias por proximidade da prova: a prova futura mais próxima aparece primeiro e, depois dela, as provas já realizadas ficam da mais recente para a mais antiga. Em 2026-09-27, a ordem exibida é Geografia (28/09), Matemática e Filosofia (25/09), Ciências (24/09), Inglês (23/09), História e Artes (22/09). O destaque superior também aponta Geografia como próxima prova.
+
+- História possui Revisão 1 do 4º bimestre publicada em `historia/4-bimestre/revisao-1/index.html`, com 26 questões interativas e explicações dos capítulos 13 e 14, baseada nas páginas enviadas e excluindo páginas dispensadas. A Home contém acesso à nova revisão sem remover as revisões do 3º bimestre. Publicação inicial em 2026-10-25; validação visual em navegador ainda pendente.
 
 ## Current direction
 Aumentar a interatividade e a qualidade pedagógica mantendo navegação simples e linguagem apropriada à aluna.
