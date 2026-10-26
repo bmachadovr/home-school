@@ -40,6 +40,8 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 
 - História do 4º bimestre ganhou Revisão 2 em `historia/4-bimestre/revisao-2/index.html`: 36 questões de múltipla escolha inéditas, dificuldade progressiva (12 fundamentos, 14 interpretação, 10 desafio avançado), alternativas próximas, feedback, persistência, cronômetro e diagnóstico por bloco e nível. A Home agora oferece Revisão 1 e Revisão 2 lado a lado. Revisão 2 publicada em 2026-10-25; validação visual em navegador pendente.
 
+- Em 2026-10-25, Revisão 2 ajustada para revelar explicações apenas após responder. Revisão 3 de História do 4º bimestre publicada em `historia/4-bimestre/revisao-3/index.html` com 60 questões progressivas (16 fundamentos, 26 interpretação, 18 desafio avançado), incluindo interpretação de fontes e comparação histórica. Link adicionado à Home. Publicação de arquivos confirmada no GitHub; validação visual em navegador ainda pendente. A revisão não equivale a conferência integral de cada página do livro de atividades e do caderno.
+
 ## Current direction
 Aumentar a interatividade e a qualidade pedagógica mantendo navegação simples e linguagem apropriada à aluna.
 
