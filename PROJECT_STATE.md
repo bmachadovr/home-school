@@ -47,6 +47,9 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 
 - Em 2026-10-27, Inglês do 4º bimestre foi publicado nas três revisões: `ingles/4-bimestre/revisao-1/index.html`, `ingles/4-bimestre/revisao-2/index.html` e `ingles/4-bimestre/revisao-3/index.html`. A Revisão 1 enfatiza conceitos e vocabulário; as Revisões 2 e 3 intensificam exercícios, repetição de vocabulário, escrita e simulados. Conteúdos prioritários: places in the city, there was/there were e simple past (verbos regulares e irregulares), com suporte contextual das Unidades 8 e 9. Os três arquivos foram confirmados por commits no GitHub. A Home foi atualizada para exibir Inglês ao lado de História no 4º bimestre, com três links, preservando o arquivo do 3º bimestre. Verificação funcional visual no navegador ainda pendente.
 
+
+- Em 2026-10-27, foi corrigido um erro de aspas no JavaScript da Revisão 1 de Inglês do 4º bimestre que impedia a inicialização da atividade. Sintaxe validada com Node.js (`node --check`) e arquivo corrigido publicado no GitHub; teste visual/funcional em navegador permanece pendente.
+
 ## Current direction
 Aumentar a interatividade e a qualidade pedagógica mantendo navegação simples e linguagem apropriada à aluna.
 
