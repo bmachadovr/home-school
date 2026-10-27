@@ -2,7 +2,7 @@
 
 > **AGENT INSTRUCTION:** Leia este arquivo antes de executar trabalho relevante neste projeto. O estado descrito aqui prevalece sobre contexto histórico de conversas, salvo quando código, conteúdo versionado ou evidência mais recente demonstrarem o contrário. Nesse caso, corrija este arquivo na mesma tarefa.
 
-Updated: 2026-10-25
+Updated: 2026-10-27
 
 ## Purpose
 Portal de estudos interativo, organizado por matérias, para uso direto pela aluna no computador.
@@ -43,6 +43,9 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 - Em 2026-10-25, Revisão 2 ajustada para revelar explicações apenas após responder. Revisão 3 de História do 4º bimestre publicada em `historia/4-bimestre/revisao-3/index.html` com 60 questões progressivas (16 fundamentos, 26 interpretação, 18 desafio avançado), incluindo interpretação de fontes e comparação histórica. Link adicionado à Home. Publicação de arquivos confirmada no GitHub; validação visual em navegador ainda pendente. A revisão não equivale a conferência integral de cada página do livro de atividades e do caderno.
 
 - Auditoria de 2026-10-25: calendário escolar do 4º bimestre confirma História cap. 13 (Chegada dos franceses e holandeses), cap. 14 (Brasil colonial: expansão para o interior), livro de atividades e revisão do caderno. Conferência estrutural da Revisão 3 confirmou 60 questões, distribuição 16/26/18 e gabarito equilibrado 15 por letra; 24 feedbacks genéricos foram substituídos por explicações históricas específicas e um enunciado repetido foi diferenciado. Teste visual/funcional no navegador não concluído por indisponibilidade de acesso; cobertura integral de livro de atividades e caderno não certificada com os materiais acessíveis.
+
+
+- Em 2026-10-27, Inglês do 4º bimestre foi publicado nas três revisões: `ingles/4-bimestre/revisao-1/index.html`, `ingles/4-bimestre/revisao-2/index.html` e `ingles/4-bimestre/revisao-3/index.html`. A Revisão 1 enfatiza conceitos e vocabulário; as Revisões 2 e 3 intensificam exercícios, repetição de vocabulário, escrita e simulados. Conteúdos prioritários: places in the city, there was/there were e simple past (verbos regulares e irregulares), com suporte contextual das Unidades 8 e 9. Os três arquivos foram confirmados por commits no GitHub. A Home foi atualizada para exibir Inglês ao lado de História no 4º bimestre, com três links, preservando o arquivo do 3º bimestre. Verificação funcional visual no navegador ainda pendente.
 
 ## Current direction
 Aumentar a interatividade e a qualidade pedagógica mantendo navegação simples e linguagem apropriada à aluna.
