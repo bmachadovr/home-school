@@ -14,3 +14,6 @@ window.P4R2=(function(){
  slides.push({type:'write',topic:'Divulgação científica',title:'Produção ativa: ciência para o público',prompt:'Escreva três ou quatro frases sobre sono e aprendizagem para público não especializado, diferenciando possível relação de certeza absoluta.',min:90,explain:'Autoavaliação: sua linguagem é clara e as conclusões respeitam limites das evidências?',minutes:3});
  return slides;
 })();
+
+/* Distribuir a posição da resposta correta sem alterar a ordem semântica dos textos. */
+(function(){var i=0;var list=window.P4R2;for(var s of list){if(s.type!=='mcq')continue;var target=i%4;var right=s.options[s.correct];var others=s.options.filter(function(x,k){return k!==s.correct});var options=[];var k=0;for(var p=0;p<4;p++)options.push(p===target?right:others[k++]);s.options=options;s.correct=target;i++;}})();
