@@ -1,0 +1,63 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Teste funcional - Português V1</title></head><body><h1>Teste de Português 4º Bimestre</h1><pre id="result">EM_EXECUCAO</pre><iframe id="frame" style="display:none"></iframe><script>
+(async function(){
+ const result=document.querySelector('#result'),frame=document.querySelector('#frame');
+ const check=(v,msg)=>{if(!v)throw Error(msg);};
+ const load=url=>new Promise((resolve,reject)=>{
+  const timeout=setTimeout(()=>reject(Error('Timeout: '+url)),7000);
+  frame.onload=()=>{clearTimeout(timeout);resolve(frame.contentWindow);};
+  frame.src=url+'?t='+Date.now();
+ });
+ const find=(w,s)=>{const x=w.document.querySelector(s);check(x,'Missing '+s);return x;};
+ function run(w,rev){
+  const slides=w.P4CURRICULUM['r'+rev],stats={choices:0,fill:0,write:0,explore:0,order:0,pairs:0,pause:0};
+  slides.forEach((s,i)=>{
+   const doc=w.document;
+   check(Number(find(w,'#pagecount').textContent)===i+1,'Page mismatch R'+rev+' p'+i);
+   if(s.type==='explore'){
+      check(find(w,'#next').disabled,'Explore incorrectly unlocked');
+      doc.querySelectorAll('[data-index]').forEach(b=>b.click());
+      find(w,'#explore-done').click();stats.explore++;
+   }else if(s.type==='order'){
+      check(find(w,'#next').disabled,'Order incorrectly unlocked');
+      for(let j=0;j<s.pieces.length;j++)find(w,'#orderPieces [data-i="'+j+'"]').click();
+      find(w,'#orderCheck').click();stats.order++;
+   }else if(s.type==='fill'){
+      find(w,'#fillAnswer').value=s.answer;
+      find(w,'#fillCheck').click();stats.fill++;
+   }else if(s.type==='write'){
+      find(w,'#writeAnswer').value='Escrevo uma definição clara, organizo as ideias e apresento um exemplo com contexto e uma fonte de consulta para verificar o conteúdo. Este texto foi produzido para testar a atividade de escrita.';
+      find(w,'#saveWrite').click();stats.write++;
+   }else if(s.type==='mcq'||s.type==='game'||s.type==='tf'){
+      find(w,'.choice[data-i="'+s.correct+'"]').click();stats.choices++;
+   }else if(s.type==='pairs'){
+      let cards=[...doc.querySelectorAll('.pair')];
+      check(cards.length===2*s.pairs.length,'Incorrect number of pair cards');
+      for(let j=0;j<s.pairs.length;j++){cards[j].click();cards[cards.length-1-j].click();}
+      stats.pairs++;
+   }else if(s.type==='pause'){
+      find(w,'#ready').click();stats.pause++;
+   }else if(s.type==='lab'){find(w,'#discover').click();}
+   check(!find(w,'#next').disabled,'Next blocked R'+rev+' p'+(i+1)+' type '+s.type+' msg='+String(doc.querySelector('#message')?.textContent));
+   find(w,'#next').click();
+  });
+  check(!!w.document.querySelector('.finish'),'No end screen R'+rev);
+  check(localStorage.getItem('hs-port4-v1-r'+rev+'-done')==='1','No completion flag R'+rev);
+  return stats;
+ }
+ for(let n=1;n<=3;n++){localStorage.removeItem('hs-port4-v1-r'+n);localStorage.removeItem('hs-port4-v1-r'+n+'-done');}
+ let w=await load('revisao-2/index.html');check(!!w.document.querySelector('.lock'),'R2 should be locked initially');
+ w=await load('revisao-3/index.html');check(!!w.document.querySelector('.lock'),'R3 should be locked initially');
+ const report=[];
+ for(let n=1;n<=3;n++){
+   w=await load('revisao-'+n+'/index.html');
+   const count=w.P4CURRICULUM['r'+n].length;
+   report.push('R'+n+': '+count+' páginas; '+JSON.stringify(run(w,n)));
+ }
+ w=await load('../../index.html');
+ check(find(w,'[data-port4-go="2"]').getAttribute('href').includes('revisao-2'),'R2 link not unlocked');
+ check(find(w,'[data-port4-go="3"]').getAttribute('href').includes('revisao-3'),'R3 link not unlocked');
+ const current=w.document.querySelector('.term.current');
+ check(!!current&&current.querySelector('h4').textContent==='Português','Portuguese not first');
+ result.textContent='SMOKE_SUCCESS\n'+report.join('\n')+'\nHome unlocked';
+})().catch(e=>document.querySelector('#result').textContent='SMOKE_FAILURE: '+e.stack);
+</script></body></html>
