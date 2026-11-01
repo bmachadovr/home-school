@@ -1,0 +1,23 @@
+name: Matemática 4º Bimestre - Testes
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'matematica/4-bimestre/**'
+      - 'index.html'
+      - '.github/workflows/matematica-4b.yml'
+  workflow_dispatch:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verificar sintaxe JavaScript
+        run: |
+          node --check matematica/4-bimestre/engine.js
+          node --check matematica/4-bimestre/curriculum.js
+      - name: Testar revisões, questões, Home e desbloqueio
+        run: node --test matematica/4-bimestre/test.mjs
