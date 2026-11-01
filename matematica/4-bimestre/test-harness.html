@@ -1,0 +1,60 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Teste funcional Matemática 4º Bimestre</title></head><body><h1>Teste de navegação e desbloqueio</h1><pre id="status">EM_EXECUCAO</pre><iframe id="lessonFrame" style="display:none"></iframe>
+<script>
+(async function(){
+ const label=document.querySelector('#status');
+ const frame=document.querySelector('#lessonFrame');
+ function assert(ok,msg){if(!ok)throw new Error(msg);}
+ function load(url){return new Promise((resolve,reject)=>{
+  const timeout=setTimeout(()=>reject(new Error('Timeout: '+url)),4000);
+  frame.onload=function(){clearTimeout(timeout);resolve(frame.contentWindow);};
+  frame.src=url+'?test='+Date.now();
+ });}
+ function el(w,selector){const a=w.document.querySelector(selector);assert(!!a,'Elemento ausente: '+selector);return a;}
+ function play(w,slides,rev){
+  let choices=0,nums=0,labs=0,matching=0;
+  for(let i=0;i<slides.length;i++){
+   const s=slides[i],d=w.document;
+   assert(Number(el(w,'#pagecount').textContent)===i+1,'Tela '+i+' fora de sequência, revisão '+rev);
+   if(['mcq','tf','game'].includes(s.type)){
+     el(w,'.choice[data-i="'+s.correct+'"]').click();choices++;
+   }else if(s.type==='numeric'){
+     const answer=el(w,'#numberAnswer');answer.value=String(s.answer).replace('.',',');
+     el(w,'#verify').click();nums++;
+   }else if(s.type==='lab'){
+     assert(el(w,'#next').disabled,'Laboratório não bloqueou avanço');
+     const slider=el(w,'#ruler');slider.value=String(s.lab.max);slider.dispatchEvent(new Event('input',{bubbles:true}));
+     el(w,'#discover').click();labs++;
+   }else if(s.type==='pairs'){
+     const cards=[...d.querySelectorAll('.pair')];assert(cards.length===s.pairs.length*2,'Cartas incompletas');
+     for(let j=0;j<s.pairs.length;j++){cards[j].click();cards[j+s.pairs.length].click();}
+     matching++;
+   }else if(s.type==='pause'){el(w,'#ready').click();}
+   assert(!el(w,'#next').disabled,'Avanço bloqueado após completar tela '+i+' de R'+rev);
+   el(w,'#next').click();
+  }
+  assert(w.document.querySelector('.finish')!==null,'Tela final ausente em R'+rev);
+  assert(localStorage.getItem('hs-mat4-v1-r'+rev+'-done')==='1','Conclusão não persistiu em R'+rev);
+  return {choices,nums,labs,matching};
+ }
+ localStorage.removeItem('hs-mat4-v1-r1');
+ localStorage.removeItem('hs-mat4-v1-r2');
+ localStorage.removeItem('hs-mat4-v1-r3');
+ localStorage.removeItem('hs-mat4-v1-r1-done');
+ localStorage.removeItem('hs-mat4-v1-r2-done');
+ localStorage.removeItem('hs-mat4-v1-r3-done');
+ let w=await load('revisao-2/index.html');
+ assert(!!w.document.querySelector('.lock'),'R2 deveria estar bloqueada antes da R1');
+ w=await load('revisao-3/index.html');
+ assert(!!w.document.querySelector('.lock'),'R3 deveria estar bloqueada antes da R2');
+ const logs=[];
+ for(let rev=1;rev<=3;rev++){
+    w=await load('revisao-'+rev+'/index.html');
+    const slides=w.M4CURRICULUM['r'+rev];
+    logs.push('R'+rev+': '+slides.length+' telas, '+JSON.stringify(play(w,slides,rev)));
+ }
+ w=await load('../../index.html');
+ assert(w.document.querySelector('[data-mat4-go="2"]').getAttribute('href').includes('revisao-2'),'Home não liberou R2');
+ assert(w.document.querySelector('[data-mat4-go="3"]').getAttribute('href').includes('revisao-3'),'Home não liberou R3');
+ label.textContent='SMOKE_SUCCESS\n'+logs.join('\n')+'\nHome desbloqueada';
+})().catch(function(err){document.querySelector('#status').textContent='SMOKE_FAILURE: '+err.stack;});
+</script></body></html>
