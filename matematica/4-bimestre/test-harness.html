@@ -26,7 +26,7 @@
      el(w,'#discover').click();labs++;
    }else if(s.type==='pairs'){
      const cards=[...d.querySelectorAll('.pair')];assert(cards.length===s.pairs.length*2,'Cartas incompletas');
-     for(let j=0;j<s.pairs.length;j++){cards[j].click();cards[j+s.pairs.length].click();}
+     for(let j=0;j<s.pairs.length;j++){cards[j].click();cards[cards.length-1-j].click();}
      matching++;
    }else if(s.type==='pause'){el(w,'#ready').click();}
    assert(!el(w,'#next').disabled,'Avanço bloqueado após completar tela '+i+' de R'+rev+'; tipo='+s.type+'; cartas='+d.querySelectorAll('.matched').length+'; par='+String(d.querySelector('#pairmsg')?.textContent)+'; aviso='+String(d.querySelector('#message')?.textContent));
