@@ -50,6 +50,18 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 
 - Em 2026-10-27, foi corrigido um erro de aspas no JavaScript da Revisão 1 de Inglês do 4º bimestre que impedia a inicialização da atividade. Sintaxe validada com Node.js (`node --check`) e arquivo corrigido publicado no GitHub; teste visual/funcional em navegador permanece pendente.
 
+## Matemática — 4º Bimestre V1 (2026-11-01)
+
+- O calendário escolar `CALENDÁRIO 4º BIM V1 7º ANO.pdf` informa Matemática na Verificação 1 do 4º bimestre, capítulos 13 (razões entre grandezas e razões especiais: escala, velocidade, densidade, densidade demográfica, aceleração) e 14 (proporção, grandezas direta/inversa/não proporcional, regra de três, porcentagem e juros). Material-base: 19 fotografias do livro e seu resumo, recebidas em duas remessas; os exemplos da escola foram preservados como referência, com reforço explicativo complementar.
+- Três revisões novas implementadas sem alterar Matemática do 3º bimestre:
+  - `matematica/4-bimestre/revisao-1/index.html`: 47 telas, 13 assuntos, explicações, laboratórios com controles, jogos de decisão, associação de pares, pausas e links de recursos externos verificados (Khan Academy, OBMEP, PhET, Centro de Mídias). Não contém lista de exercícios; leitura em voz alta depende do recurso Web Speech do navegador.
+  - `matematica/4-bimestre/revisao-2/index.html`: 44 telas, consolidação mais exigente com explicações, questões de múltipla escolha, respostas digitadas, verdadeiro/falso e jogos de associação.
+  - `matematica/4-bimestre/revisao-3/index.html`: 66 telas, 60 questões de múltipla escolha (20 básicas, 20 intermediárias, 20 avançadas) com quatro alternativas plausíveis e explicações pós-resposta; 6 pausas entre blocos. Distribuição das alternativas corretas equilibrada: 15 posições A/B/C/D.
+- Estrutura técnica compartilhada em `matematica/4-bimestre/curriculum.js`, `engine.js` e `style.css`. Inclui carrossel, progresso persistido por revisão, pontuação, relógio pausável, atalhos de teclado, narradora opcional do navegador, diagnóstico por assunto, conclusão local e bloqueio de acesso direto. As revisões 2 e 3 permanecem bloqueadas até haver conclusão local da anterior, e a Home só ativa seus links após essa confirmação. Persistência usa localStorage do navegador, sem sincronização entre dispositivos.
+- A Home destaca Matemática no 4º bimestre, preservando as revisões e matérias anteriores.
+- Testes automatizados versionados em `matematica/4-bimestre/test.mjs` e workflow `.github/workflows/matematica-4b.yml`. Execução inicial: GitHub Actions #41319281465 concluída com SUCCESS em 2026-11-01, com checagem de sintaxe JS e testes de estrutura, conteúdo, dificuldade, distribuição das opções, Home e bloqueio do acesso direto.
+- Limitação conhecida: ainda não houve validação visual e de interação de ponta a ponta em um navegador real. Vídeos e simuladores externos abrem em links, dependendo de Internet; áudio depende de compatibilidade do navegador. GitHub Pages é o mecanismo de deploy; verificar o status do build mais recente antes de declarar publicação concluída.
+
 ## Current direction
 Aumentar a interatividade e a qualidade pedagógica mantendo navegação simples e linguagem apropriada à aluna.
 
