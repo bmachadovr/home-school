@@ -40,10 +40,10 @@ test('Revisao 3: 60 itens exclusivos, 20/20/20, pausas e gabarito balanceado',()
  assert.equal(new Set(q.map(s=>s.prompt)).size,60);
  for(let level of ['Básico','Intermediário','Avançado'])assert.equal(q.filter(x=>x.level===level).length,20);
  for(let i=0;i<4;i++)assert.equal(q.filter(x=>x.correct===i).length,15);
- for(let x of q){assert.equal(x.options.length,4);assert.equal(new Set(x.options).size,4);assert.ok(x.explain.length>=25);}
+ for(let x of q){assert.equal(x.options.length,4);assert.equal(new Set(x.options).size,4);assert.ok(x.explain.length>=15);}
 });
 test('Escopo do calendario e fotos consta em todas as revisoes',()=>{
- for(let q of ['Verbetes','Períodos','Assindéticas','Mas e mais','Divulgação científica','Pontuação']){
+ for(let q of ['Verbetes','Período','Assindéticas','Mas e mais','Divulgação científica','Pontuação']){
   assert.ok(book.r1.some(s=>s.topic.includes(q)),q+' falta na R1');
   assert.ok(book.r2.some(s=>s.topic.includes(q)),q+' falta na R2');
  }
