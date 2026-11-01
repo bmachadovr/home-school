@@ -1,0 +1,38 @@
+name: Português 4º Bimestre - Testes
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'portugues/4-bimestre/**'
+      - 'index.html'
+      - '.github/workflows/portugues-4b.yml'
+  workflow_dispatch:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validar sintaxe dos scripts
+        run: |
+          for f in portugues/4-bimestre/*.js; do node --check "$f"; done
+      - name: Testar programa, perguntas e bloqueio
+        run: node --test portugues/4-bimestre/test.mjs
+      - name: Percorrer páginas no Chrome headless
+        run: |
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME" ]; then
+            echo "Google Chrome/Chromium não localizado"; exit 1
+          fi
+          python3 -m http.server 8989 --bind 127.0.0.1 >/tmp/port4-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          "$CHROME" --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-background-networking --virtual-time-budget=20000 --dump-dom "http://127.0.0.1:8989/portugues/4-bimestre/test-harness.html" >/tmp/port4-browser.html 2>/tmp/port4-errors.html
+          if grep -q '<pre id="result">SMOKE_FAILURE' /tmp/port4-browser.html; then
+            sed -n '/<pre id="result">/,/<\/pre>/p' /tmp/port4-browser.html
+            exit 1
+          fi
+          grep '<pre id="result">SMOKE_SUCCESS' /tmp/port4-browser.html
