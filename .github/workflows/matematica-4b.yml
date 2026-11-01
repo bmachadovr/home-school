@@ -21,3 +21,20 @@ jobs:
           node --check matematica/4-bimestre/curriculum.js
       - name: Testar revisões, questões, Home e desbloqueio
         run: node --test matematica/4-bimestre/test.mjs
+      - name: Teste real de navegação com Google Chrome
+        run: |
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME" ]; then
+            echo "Chrome/Chromium indisponível no runner"
+            exit 1
+          fi
+          python3 -m http.server 8989 --bind 127.0.0.1 >/tmp/mat4-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          "$CHROME" --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-background-networking --virtual-time-budget=15000 --dump-dom "http://127.0.0.1:8989/matematica/4-bimestre/test-harness.html" >/tmp/mat4-browser.html 2>/tmp/mat4-browser.err
+          grep 'SMOKE_SUCCESS' /tmp/mat4-browser.html
+          if grep -q 'SMOKE_FAILURE' /tmp/mat4-browser.html; then
+            cat /tmp/mat4-browser.html
+            exit 1
+          fi
