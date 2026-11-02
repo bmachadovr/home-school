@@ -21,7 +21,7 @@ function drawEntry(){
  root.querySelector('#nameForm').onsubmit=e=>{e.preventDefault();const v=root.querySelector('#studentName').value.trim().replace(/\s+/g,' ').slice(0,26);if(!valid(v)){root.querySelector('#nameError').textContent='Digite pelo menos duas letras.';return;}name=v;save();drawChat();};
 }
 function bubble(text,mine=false,extra=''){
- return '<div class="message '+(mine?'from-me':'from-teacher')+' '+extra+'"><p>'+esc(text).replace(/\n/g,'<br>')+'</p><span class="bubble-time">'+(mine?'✓✓':'')+'</span></div>';
+ return '<div class="message '+(mine?'from-me':'from-teacher')+' '+extra+'"><p>'+esc(String(text).replaceAll('{nome}',name)).replace(/\n/g,'<br>')+'</p><span class="bubble-time">'+(mine?'✓✓':'')+'</span></div>';
 }
 function progress(){
  const i=answers.length,p=Math.round(i/80*100);
@@ -53,7 +53,7 @@ function choose(index){
 function drawChat(){
  if(!name){drawEntry();return;}
  const n=answers.length,complete=n===80;
- root.innerHTML='<div class="desktop"><div class="app-label"><div class="app-logo">✦</div><div><span class="overline">Home School apresenta</span><h1>Conversa com '+esc(cfg.teacher)+'</h1></div><span class="app-tag">'+esc(cfg.subject)+'</span></div><div class="phone"><header class="conversation-header"><a href="../../../index.html" class="back-icon" aria-label="Voltar para Home">‹</a><div class="portrait portrait-small">'+esc(cfg.initials)+'</div><div class="contact"><strong>'+esc(cfg.teacher)+'</strong><span><i class="online-dot"></i> online para estudar • personagem histórico</span></div><button class="header-action" id="reset" title="Reiniciar conversa" aria-label="Reiniciar a conversa">↻</button></header>'+progress()+'<div class="chat-scroll" id="chatScroll" aria-live="polite">'+transcript()+'</div>'+(complete?resultPanel():choicePanel())+'</div><p class="privacy">Simulação educativa. Conversa salva apenas neste navegador, sem envio de mensagens a terceiros.</p></div>';
+ root.innerHTML='<div class="desktop"><div class="app-label"><div class="app-logo">✦</div><div><span class="overline">Home School apresenta</span><h1>Conversa com '+esc(cfg.teacher)+'</h1></div><span class="app-tag">'+esc(cfg.subject)+'</span></div><div class="phone"><header class="conversation-header"><a href="../../../index.html" class="back-icon" aria-label="Voltar para Home">‹</a><div class="portrait portrait-small">'+esc(cfg.initials)+'</div><div class="contact"><strong>'+esc(cfg.teacher)+'</strong><span><i class="online-dot"></i> com '+esc(name)+' • conversa fictícia</span></div><button class="header-action" id="reset" title="Reiniciar conversa" aria-label="Reiniciar a conversa">↻</button></header>'+progress()+'<div class="chat-scroll" id="chatScroll" aria-live="polite">'+transcript()+'</div>'+(complete?resultPanel():choicePanel())+'</div><p class="privacy">Simulação educativa. Conversa salva apenas neste navegador, sem envio de mensagens a terceiros.</p></div>';
  root.querySelector('#reset').onclick=()=>{if(confirm('Recomeçar a conversa e apagar as respostas anteriores?')){answers=[];save();drawChat();}};
  const chat=root.querySelector('#chatScroll');chat.scrollTop=chat.scrollHeight;
  if(!complete){
