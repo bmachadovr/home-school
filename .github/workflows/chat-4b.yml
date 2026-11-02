@@ -22,7 +22,7 @@ jobs:
           done
       - name: Auditar 160 dialogos e regras de pontuacao
         run: node --test atividades/chat-4b/test.mjs
-      - name: Testar 240 interacoes e retomada em Chrome
+      - name: Testar 240 interacoes, digitacao e retomada em Chrome
         run: |
           CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
           if [ -z "$CHROME" ]; then echo "Chrome/Chromium não instalado"; exit 1; fi
@@ -30,7 +30,7 @@ jobs:
           SERVER_PID=$!
           trap 'kill $SERVER_PID || true' EXIT
           sleep 2
-          "$CHROME" --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-background-networking --virtual-time-budget=24000 --dump-dom "http://127.0.0.1:8989/atividades/chat-4b/test-harness.html" >/tmp/chat-browser.html 2>/tmp/chat-errors.log
+          "$CHROME" --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-background-networking --virtual-time-budget=60000 --dump-dom "http://127.0.0.1:8989/atividades/chat-4b/test-harness.html" >/tmp/chat-browser.html 2>/tmp/chat-errors.log
           if grep -q '<pre id="status">SMOKE_FAILURE' /tmp/chat-browser.html; then
             sed -n '/<pre id="status">/,/<\/pre>/p' /tmp/chat-browser.html | head -c 4000
             exit 1
