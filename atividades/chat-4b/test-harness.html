@@ -28,6 +28,14 @@
   check(element(w,'.contact').textContent.includes(student),'Nome no cabeçalho ausente');
   check(element(w,'#chatScroll').textContent.includes(student),'Nome não aparece na conversa');
   check(w.document.querySelectorAll('.response-option').length===4,'Precisam existir quatro respostas');
+  const head=element(w,'.conversation-header .teacher-avatar .avatar-photo');
+  check(head.src.includes('wikimedia.org'),'Retrato historico nao encontrado no cabecalho');
+  const row=element(w,'.chat-scroll .teacher-message-row .avatar-photo');
+  check(row.src===head.src,'Avatar das mensagens nao corresponde ao perfil');
+  check(element(w,'.photo-credit').href.includes('commons.wikimedia.org'),'Falta credito da fotografia');
+  // O fallback por iniciais permanece funcional mesmo se o servidor de fotos falhar.
+  row.dispatchEvent(new w.Event('error',{bubbles:false}));
+  check(!!row.closest('.teacher-avatar.photo-failed'),'Fallback do retrato nao foi ativado');
   return w;
  }
  function send(w,choice,i){
@@ -37,6 +45,7 @@
   options[choice].click();
   check(!!w.document.querySelector('.just-sent'),'A mensagem enviada não foi destacada');
   check(!!w.document.querySelector('.typing-bubble'),'Professor não está digitando');
+  check(!!w.document.querySelector('.typing-row .avatar-photo'),'Bolha digitando precisa da foto do professor');
   check(!!w.document.querySelector('.reply-waiting'),'Confirmação da resposta não apareceu');
   check(element(w,'.reply-waiting').textContent.includes('Resposta enviada!'),'Confirmação não está clara');
   check(!w.document.querySelector('.response-option'),'Novas opções apareceram antes da digitação terminar');
