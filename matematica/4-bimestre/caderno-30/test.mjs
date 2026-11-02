@@ -51,7 +51,7 @@ test('Conferência independente dos resultados de cálculo mais complexos',()=>{
  assert.equal(8*400000/100000,32);
  assert.equal(7*280/7,280);
  assert.equal(280/(7*5)*(12*7),672);
- assert.equal((54000*1.12)/90,672);
+ assert.equal((54000+54000*12/100)/90,672);
  assert.equal((30-15)/5,3);
  assert.equal(2400*.02*6,288);
  assert.equal(Math.round(720*1.18*.85*100)/100,722.16);
