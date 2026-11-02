@@ -2,7 +2,7 @@
 
 > **AGENT INSTRUCTION:** Leia este arquivo antes de executar trabalho relevante neste projeto. O estado descrito aqui prevalece sobre contexto histórico de conversas, salvo quando código, conteúdo versionado ou evidência mais recente demonstrarem o contrário. Nesse caso, corrija este arquivo na mesma tarefa.
 
-Updated: 2026-10-27
+Updated: 2026-11-02
 
 ## Purpose
 Portal de estudos interativo, organizado por matérias, para uso direto pela aluna no computador.
@@ -87,6 +87,16 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 - Removido o bloqueio por `prevKey` em `portugues/4-bimestre/engine.js` e `matematica/4-bimestre/engine.js`. Foram **preservados** o progresso salvo, a pontuação, a conclusão e os links de continuidade para quem desejar estudar em ordem.
 - Testes unitários e testes de navegação end-to-end de ambas as disciplinas foram atualizados para exigir acesso direto mesmo com `localStorage` vazio. Verificar as execuções dos dois workflows e o GitHub Pages após o último commit.
 - Esta decisão substitui as instruções históricas de desbloqueio progressivo registradas anteriormente neste documento.
+
+## Chats com professores históricos — Português e Matemática (2026-11-02)
+
+- Criadas duas atividades independentes do 4º bimestre: `atividades/chat-4b/portugues/index.html` (Machado de Assis) e `atividades/chat-4b/matematica/index.html` (Albert Einstein). Ambos os links aparecem nos cartões das respectivas disciplinas na Home, abaixo das três revisões existentes; a ordem Português, Matemática, Inglês, História e os arquivos anteriores foram preservados.
+- Cada atividade apresenta exatamente 80 turnos de pergunta no formato de conversa fictícia com personagem histórico. A aluna informa o nome apenas na entrada, e depois responde exclusivamente escolhendo uma de quatro mensagens completas, que aparecem como bolhas de chat. As perguntas são incorporadas a histórias e assuntos do calendário do 4º bimestre; não há campo de texto livre nem correção individual ou revelação da pontuação das opções durante a conversa.
+- Cada turno tem quatro opções de fala: uma totalmente correta (1,25), uma parcialmente correta (0,75) e duas incorretas (0), em posições alternadas e equilibradas. O máximo é 80 × 1,25 = 100 pontos por matéria. A nota é exibida somente após a resposta 80, com resumo opcional por assunto; não há gabarito.
+- Matemática: razão, escala, velocidade média, densidade, densidade demográfica, aceleração, proporção, proporcionalidade direta/inversa/não proporcional, regra de três, porcentagem e juros simples. Português: verbetes e acepções, abreviaturas, samba e dicionário temático, produção de verbete, período simples/composto, locução verbal, coordenação, conjunções, pontuação, mas/mais, divulgação e leitura crítica de ciência.
+- Motor e interface em `atividades/chat-4b/engine.js` e `style.css`, dados em quatro partes `part-{1..4}.js` por matéria, além dos respectivos `config.js`. Temas visuais distintos, balões do professor e da aluna, progresso, botões responsivos e retomada via localStorage usando chaves separadas (`hs-chat-4b-portugues-v1` e `hs-chat-4b-matematica-v1`). Nome e escolhas permanecem apenas no navegador. A conversa é explicitamente identificada como **simulação educativa fictícia**, não comunicação com pessoas reais.
+- Testes automáticos em `atividades/chat-4b/test.mjs` e `test-harness.html`, workflow `.github/workflows/chat-4b.yml`. GitHub Actions #41466560616 concluiu **SUCCESS**, incluindo checagem de sintaxe, auditoria de 160 falas e pontuação, 240 respostas simuladas no Chrome, percursos de 100/100 pontos nas duas matérias, percurso de 97 pontos com alternativas parciais/incorretas, retomada após atualização da página e presença dos links na Home.
+- O teste de navegador é automatizado. Não há inspeção manual da renderização em todos os tamanhos de telefone nem sincronização de progresso entre dispositivos. Verificar conclusão do deploy GitHub Pages para o commit final antes de confirmar publicação ao usuário.
 
 ## Current direction
 Aumentar a interatividade e a qualidade pedagógica mantendo navegação simples e linguagem apropriada à aluna.
