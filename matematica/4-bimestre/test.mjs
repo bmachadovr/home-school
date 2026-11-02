@@ -41,16 +41,16 @@ test('Conteúdo contempla os 13 blocos do programa escolar',()=>{
  const topics=['Razão','Escala','Velocidade média','Densidade','Densidade demográfica','Aceleração','Proporção','Diretamente proporcionais','Inversamente proporcionais','Não proporcionais','Regra de três','Porcentagem','Juros simples'];
  for(const t of topics){assert.ok(book.r1.some(x=>x.topic===t),'R1 sem '+t);assert.ok(book.r2.some(x=>x.topic===t),'R2 sem '+t);}
 });
-test('Home preserva o 3º bimestre, adiciona V1 e controla desbloqueio',()=>{
+test('Home preserva bimestres e habilita as seis revisões',()=>{
  assert.match(home,/matematica\/3-bimestre-v2\/revisao-1\/index.html/);
- assert.match(home,/matematica\/4-bimestre\/revisao-1\/index.html/);
- assert.match(home,/data-mat4-go="2" aria-disabled="true"/);
- assert.match(home,/data-mat4-go="3" aria-disabled="true"/);
- assert.match(home,/hs-mat4-v1-r/);
+ for(const subject of ['portugues','matematica'])for(let n=1;n<=3;n++){
+  assert.ok(home.includes('href="'+subject+'/4-bimestre/revisao-'+n+'/index.html"'),'Link direto ausente: '+subject+' '+n);
+ }
+ assert.doesNotMatch(home,/data-(?:port|mat)4-go|aria-disabled="true"/);
  const scripts=[...home.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
  for(const script of scripts)new vm.Script(script,{filename:'home-inline.js'});
 });
-test('Acesso direto à revisão bloqueada funciona',()=>{
+test('Acesso direto às revisões 2 e 3 sem progresso',()=>{
  const vmContext=(rev,storage)=>{const root={innerHTML:''};const mocks=new Map();const document={
   querySelector(selector){if(selector==='#application')return root;
    if(!mocks.has(selector))mocks.set(selector,{disabled:false,textContent:'',style:{},classList:{add(){},remove(){}},onclick:null,addEventListener(){},querySelector(){return {disabled:false,style:{},addEventListener(){}}},querySelectorAll(){return []}});
@@ -63,8 +63,8 @@ test('Acesso direto à revisão bloqueada funciona',()=>{
  new vm.Script(engine).runInNewContext(ctxt);
  return {root,mocks,storage};
  };
- const locked2=vmContext(2,{});assert.match(locked2.root.innerHTML,/ainda está trancada/);
- const locked3=vmContext(3,{'hs-mat4-v1-r1-done':'1'});assert.match(locked3.root.innerHTML,/ainda está trancada/);
+ const available2clean=vmContext(2,{});assert.match(available2clean.root.innerHTML,/Academia dos Padrões/);
+ const available3clean=vmContext(3,{});assert.match(available3clean.root.innerHTML,/Questão 1/);
  const available1=vmContext(1,{});assert.match(available1.root.innerHTML,/Laboratório das Relações Matemáticas/);
  const available2=vmContext(2,{'hs-mat4-v1-r1-done':'1'});assert.match(available2.root.innerHTML,/Academia dos Padrões/);
  const available3=vmContext(3,{'hs-mat4-v1-r2-done':'1'});assert.match(available3.root.innerHTML,/Questão 1/);
