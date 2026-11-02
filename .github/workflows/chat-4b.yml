@@ -1,0 +1,38 @@
+name: Chats Português e Matemática - Testes
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'atividades/chat-4b/**'
+      - 'index.html'
+      - '.github/workflows/chat-4b.yml'
+  workflow_dispatch:
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Checar sintaxe dos scripts
+        run: |
+          for f in atividades/chat-4b/*.js atividades/chat-4b/portugues/*.js atividades/chat-4b/matematica/*.js; do
+            node --check "$f"
+          done
+      - name: Auditar 160 dialogos e regras de pontuacao
+        run: node --test atividades/chat-4b/test.mjs
+      - name: Testar 240 interacoes e retomada em Chrome
+        run: |
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME" ]; then echo "Chrome/Chromium não instalado"; exit 1; fi
+          python3 -m http.server 8989 --bind 127.0.0.1 >/tmp/chat-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          "$CHROME" --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-background-networking --virtual-time-budget=24000 --dump-dom "http://127.0.0.1:8989/atividades/chat-4b/test-harness.html" >/tmp/chat-browser.html 2>/tmp/chat-errors.log
+          if grep -q '<pre id="status">SMOKE_FAILURE' /tmp/chat-browser.html; then
+            sed -n '/<pre id="status">/,/<\/pre>/p' /tmp/chat-browser.html | head -c 4000
+            exit 1
+          fi
+          grep '<pre id="status">SMOKE_SUCCESS' /tmp/chat-browser.html
