@@ -4,15 +4,11 @@ const rev=Number(document.body.dataset.revisao);
 const data=window.M4CURRICULUM;
 const root=document.querySelector('#application');
 const storeKey='hs-mat4-v1-r'+rev;
-const prevKey='hs-mat4-v1-r'+(rev-1)+'-done';
 const doneKey=storeKey+'-done';
 const home='../../../index.html';
 const slides=data&&data['r'+rev];
 const h=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 if(!slides||!slides.length){root.textContent='Conteúdo não encontrado.';return;}
-if(rev>1&&localStorage.getItem(prevKey)!=='1'){
- root.innerHTML='<section class="lock"><img src="../../../assets/jujuba.webp" alt="Jujuba"><h1>Esta missão ainda está trancada</h1><p>Conclua a Revisão '+(rev-1)+' antes de iniciar a Revisão '+rev+'. Seu progresso é guardado neste navegador.</p><a class="btn" href="'+home+'">Voltar à Home</a></section>';return;
-}
 let saved={};
 try{saved=JSON.parse(localStorage.getItem(storeKey)||'{}')||{};}catch(e){}
 let pos=Math.min(Math.max(0,Number(saved.pos)||0),slides.length);
