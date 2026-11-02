@@ -45,8 +45,8 @@
   return stats;
  }
  for(let n=1;n<=3;n++){localStorage.removeItem('hs-port4-v1-r'+n);localStorage.removeItem('hs-port4-v1-r'+n+'-done');}
- let w=await load('revisao-2/index.html');check(!!w.document.querySelector('.lock'),'R2 should be locked initially');
- w=await load('revisao-3/index.html');check(!!w.document.querySelector('.lock'),'R3 should be locked initially');
+ let w=await load('revisao-2/index.html');check(!!w.document.querySelector('.lesson'),'R2 should open without prior progress');
+ w=await load('revisao-3/index.html');check(!!w.document.querySelector('.lesson'),'R3 should open without prior progress');
  const report=[];
  for(let n=1;n<=3;n++){
    w=await load('revisao-'+n+'/index.html');
@@ -54,10 +54,10 @@
    report.push('R'+n+': '+count+' páginas; '+JSON.stringify(run(w,n)));
  }
  w=await load('../../index.html');
- check(find(w,'[data-port4-go="2"]').getAttribute('href').includes('revisao-2'),'R2 link not unlocked');
- check(find(w,'[data-port4-go="3"]').getAttribute('href').includes('revisao-3'),'R3 link not unlocked');
+ check(find(w,'a[href="portugues/4-bimestre/revisao-2/index.html"]').getAttribute('href').includes('revisao-2'),'R2 should be available by default');
+ check(find(w,'a[href="portugues/4-bimestre/revisao-3/index.html"]').getAttribute('href').includes('revisao-3'),'R3 should be available by default');
  const current=w.document.querySelector('.term.current');
  check(!!current&&current.querySelector('h4').textContent==='Português','Portuguese not first');
- result.textContent='SMOKE_SUCCESS\n'+report.join('\n')+'\nHome unlocked';
+ result.textContent='SMOKE_SUCCESS\n'+report.join('\n')+'\nHome links available';
 })().catch(e=>document.querySelector('#result').textContent='SMOKE_FAILURE: '+e.stack);
 </script></body></html>
