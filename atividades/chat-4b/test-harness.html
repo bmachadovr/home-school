@@ -1,0 +1,64 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Teste dos chats do 4º bimestre</title></head><body><pre id="status">EM_EXECUCAO</pre><iframe id="screen" style="width:500px;height:650px;opacity:.05" title="Teste"></iframe><script>
+(async()=>{
+ const status=document.querySelector('#status');
+ const frame=document.querySelector('#screen');
+ const check=(ok,msg)=>{if(!ok)throw Error(msg);};
+ function open(url){return new Promise((resolve,reject)=>{
+  const timer=setTimeout(()=>reject(Error('Tempo excedido: '+url)),8000);
+  frame.onload=()=>{clearTimeout(timer);resolve(frame.contentWindow)};
+  frame.src=url+(url.includes('?')?'&':'?')+'check='+Math.random();
+ });}
+ const element=(win,query)=>{const e=win.document.querySelector(query);check(!!e,'Elemento ausente '+query);return e;};
+ const slot=i=>(i*7+Math.floor(i/4))%4;
+ const part=i=>(slot(i)+1+(i%2))%4;
+ const wrong=i=>[0,1,2,3].filter(n=>n!==slot(i)&&n!==part(i));
+ const home='../../index.html';
+ async function begin(subject,student){
+  localStorage.removeItem('hs-chat-4b-'+subject+'-v1');
+  let w=await open(subject+'/index.html');
+  check(w.document.querySelectorAll('#studentName').length===1,'O nome deve ser o único campo');
+  element(w,'#studentName').value=student;
+  element(w,'#nameForm').dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+  check(element(w,'.contact').textContent.includes(student),'Nome no cabeçalho ausente');
+  check(element(w,'#chatScroll').textContent.includes(student),'Nome não aparece na conversa');
+  check(w.document.querySelectorAll('.response-option').length===4,'Precisam existir quatro respostas');
+  return w;
+ }
+ function send(w,choice){
+  const opts=[...w.document.querySelectorAll('.response-option')];
+  check(opts.length===4,'As quatro escolhas sumiram');
+  check(opts.every(x=>x.textContent.length>15),'Resposta não está em linguagem natural');
+  opts[choice].click();
+ }
+ async function run80(subject,student,kind){
+  let w=await begin(subject,student);
+  const expected=kind==='full'?100:97;
+  for(let i=0;i<80;i++){
+   const choice=kind==='full'?slot(i):(i===0?part(i):i===1?wrong(i)[0]:i===2?wrong(i)[1]:slot(i));
+   send(w,choice);
+   check(!w.document.querySelector('.feedback'),'Não deve haver correção individual');
+   if(i===9){
+     check(element(w,'.progress-wrap').textContent.includes('10 de 80'),'Progresso ausente');
+     w=await open(subject+'/index.html');
+     check(element(w,'.progress-wrap').textContent.includes('10 de 80'),'Retomada de progresso falhou');
+     check(!w.document.querySelector('#nameForm'),'Não pode pedir nome de novo após salvar');
+   }
+  }
+  check(!!w.document.querySelector('.result'),'Resultado não apareceu');
+  check(element(w,'.score strong').textContent===(expected.toFixed(2).replace('.',',')),'Pontuação final incorreta '+subject+' '+kind+': '+element(w,'.score strong').textContent);
+  const stored=JSON.parse(localStorage.getItem('hs-chat-4b-'+subject+'-v1'));
+  check(stored.answers.length===80,'Progresso não foi salvo');
+  check(!w.document.querySelector('.response-option'),'Botões não deveriam continuar após a conclusão');
+  return {subject,kind,score:expected,answers:stored.answers.length};
+ }
+ const report=[];
+ report.push(await run80('portugues','Lia','full'));
+ report.push(await run80('matematica','Bia','full'));
+ report.push(await run80('portugues','Júlia','partial'));
+ const w=await open(home);
+ for(const subject of ['portugues','matematica']){
+  check(!!w.document.querySelector('a[href="atividades/chat-4b/'+subject+'/index.html"]'),'Link na Home ausente: '+subject);
+ }
+ status.textContent='SMOKE_SUCCESS\n'+report.map(x=>JSON.stringify(x)).join('\n');
+})().catch(e=>document.querySelector('#status').textContent='SMOKE_FAILURE: '+e.stack);
+</script></body></html>
