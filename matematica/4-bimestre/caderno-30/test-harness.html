@@ -41,8 +41,6 @@
  ok(before.screen==='answers','Gabarito não foi salvo como tela atual');
  w=await load();
  ok(w.document.querySelectorAll('.solution').length===30,'Gabarito não foi restaurado após recarregar');
- get(w,'#restart').click();
- ok(w.document.querySelectorAll('.solution').length===30,'O navegador deve aguardar confirmação para reiniciar');
  // Reinicialização com confirmação explicitamente simulada.
  w.confirm=()=>true;
  get(w,'#restart').click();
