@@ -50,26 +50,37 @@ test('Escopo do calendario e fotos consta em todas as revisoes',()=>{
  const t=JSON.stringify(book.r3).toLowerCase();
  for(let x of ['samba','sono','pois','vírgula','verbete'])assert.ok(t.includes(x),x);
 });
-test('Home: Portugues primeiro, demais materias preservadas e bloqueios presentes',()=>{
+test('Home: todas as revisões abertas e matérias preservadas',()=>{
  const start=home.indexOf('<section class="term current"'),end=home.indexOf('<details class="term archive">');
  const section=home.slice(start,end);
  const order=[...section.matchAll(/<h4>(Português|Matemática|Inglês|História)<\/h4>/g)].map(x=>x[1]);
  assert.deepEqual(order,['Português','Matemática','Inglês','História']);
- assert.match(home,/data-port4-go="2" aria-disabled="true"/);
- assert.match(home,/data-port4-go="3" aria-disabled="true"/);
- assert.match(home,/hs-port4-v1-r/);
+ for(const subject of ['portugues','matematica'])for(let n=1;n<=3;n++){
+  const target=subject+'/4-bimestre/revisao-'+n+'/index.html';
+  assert.ok(section.includes('href="'+target+'"'),'Link ausente: '+target);
+ }
+ assert.doesNotMatch(section,/data-(?:port|mat)4-go|aria-disabled="true"/);
  assert.match(home,/matematica\/3-bimestre-v2\/revisao-1\/index.html/);
  for(const [,body] of home.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g))new vm.Script(body,{filename:'home inline'});
 });
-test('Protecao contra acesso direto às revisoes 2 e 3',()=>{
+test('Revisões 2 e 3 abrem diretamente sem progresso anterior',()=>{
  function open(rev,storage){
-  const root={innerHTML:'',textContent:''};
-  const document={body:{dataset:{revisao:String(rev)}},querySelector:s=>s==='#application'?root:null,visibilityState:'hidden'};
+  const root={innerHTML:'',textContent:''},elements=new Map();
+  const document={
+   body:{dataset:{revisao:String(rev)}},visibilityState:'hidden',
+   addEventListener(){},activeElement:{tagName:'BODY'},
+   querySelector(selector){
+    if(selector==='#application')return root;
+    if(!elements.has(selector))elements.set(selector,{disabled:false,textContent:'',style:{},classList:{add(){},remove(){}},onclick:null,addEventListener(){},querySelector(){return {disabled:false}},querySelectorAll(){return []}});
+    return elements.get(selector);
+   }
+  };
   const localStorage={getItem:k=>storage[k]||null,setItem:(k,v)=>storage[k]=v,removeItem:k=>delete storage[k]};
-  const fake={window:{P4CURRICULUM:book},document,localStorage,setInterval(){}};
+  const fake={window:{P4CURRICULUM:book},document,localStorage,setInterval(){},setTimeout(){}};
   new vm.Script(engine).runInNewContext(fake);
   return root.innerHTML;
  }
- assert.match(open(2,{}),/ainda está trancada/);
- assert.match(open(3,{'hs-port4-v1-r1-done':'1'}),/ainda está trancada/);
+ assert.match(open(1,{}),/Biblioteca das Pistas/);
+ assert.match(open(2,{}),/Oficina das Palavras/);
+ assert.match(open(3,{}),/Questão 1/);
 });
