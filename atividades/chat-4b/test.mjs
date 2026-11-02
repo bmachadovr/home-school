@@ -58,6 +58,23 @@ test('Pontuação de quatro alternativas: 1,25, 0,75, 0, 0',()=>{
  assert.match(engine,/points:\.75/);
  assert.match(engine,/points:0/);
 });
+test('Retratos fotograficos com creditos e fallback para as duas disciplinas',()=>{
+ const p=scenes.portugues.cfg,m=scenes.matematica.cfg;
+ for(const x of [p,m]){
+  assert.match(x.photo,/^https:\/\/(?:thumb|upload)\.wikimedia\.org\//);
+  assert.match(x.photoSource,/^https:\/\/commons\.wikimedia\.org\/wiki\/File:/);
+  assert.ok(x.photoAttribution.length>35);
+  assert.ok(x.initials.length===2);
+ }
+ assert.match(p.photoSource,/Machado_de_Assis_1904/);
+ assert.match(m.photoSource,/Einstein1921/);
+ assert.match(engine,/function teacherAvatar/);
+ assert.match(engine,/teacherAvatar\('welcome'\)/);
+ assert.match(engine,/teacherAvatar\('header'\)/);
+ assert.match(engine,/class="teacher-message-row"/);
+ assert.match(engine,/class="typing-bubble/);
+ assert.match(engine,/classList\.add\('photo-failed'\)/);
+});
 test('Somente nome é digitado; respostas por quatro opções',()=>{
  assert.match(engine,/id="studentName"/);
  assert.match(engine,/class="response-option"/);
