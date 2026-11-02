@@ -1,0 +1,58 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Smoke test: caderno de 30 exercícios</title></head><body><pre id="status">EM_EXECUCAO</pre><iframe id="testFrame" title="Testes do caderno" style="width:850px;height:700px;opacity:.05"></iframe><script>
+(async()=>{
+ const status=document.querySelector('#status'),frame=document.querySelector('#testFrame');
+ const ok=(v,msg)=>{if(!v)throw Error(msg)};
+ const get=(w,sel)=>{const e=w.document.querySelector(sel);ok(!!e,'Elemento ausente: '+sel);return e};
+ function load(){
+  return new Promise((resolve,reject)=>{
+   const timeout=setTimeout(()=>reject(Error('Tempo esgotado ao abrir o caderno')),6000);
+   frame.onload=()=>{clearTimeout(timeout);resolve(frame.contentWindow)};
+   frame.src='index.html?smoke='+Math.random();
+  });
+ }
+ const key='hs-mat4-caderno30-v1';
+ localStorage.removeItem(key);
+ let w=await load();
+ ok(get(w,'.statement').textContent.length>80,'Problema inicial sem cálculo');
+ ok(w.document.querySelectorAll('.nav-btn').length===30,'Navegação não tem 30 exercícios');
+ ok(w.document.querySelectorAll('.print-question').length===30,'Lista impressa incompleta');
+ ok(!w.document.querySelector('.solution'),'Gabarito vazou para a primeira questão');
+ for(let i=0;i<30;i++){
+  const text=get(w,'.statement').textContent;
+  ok(/\d/.test(text),'Exercício '+(i+1)+' sem números');
+  ok(!w.document.querySelector('.answer-final'),'Resposta exposta antes de concluir');
+  get(w,'#mark').click();
+  const state=JSON.parse(localStorage.getItem(key));
+  ok(state.done.length===i+1,'Marcação de progresso errada no exercício '+(i+1));
+  if(i===7){
+   w=await load();
+   ok(get(w,'.progress-numbers').textContent.includes('8 / 30'),'Progresso sumiu após atualização');
+   ok(!w.document.querySelector('.solution'),'Gabarito acessível antes de concluir');
+  }
+ }
+ ok(!!w.document.querySelector('#reveal'),'A tela final não apareceu');
+ ok(!w.document.querySelector('.solution'),'Resolução exibida antes de clicar em liberar');
+ get(w,'#reveal').click();
+ ok(w.document.querySelectorAll('.solution').length===30,'Não existem 30 resoluções');
+ ok(w.document.querySelectorAll('.solution .solution-body li').length>=100,'Passos insuficientes nas resoluções');
+ get(w,'#openAll').click();
+ ok([...w.document.querySelectorAll('.solution')].every(x=>x.open),'Não abriu todas as resoluções');
+ const before=JSON.parse(localStorage.getItem(key));
+ ok(before.screen==='answers','Gabarito não foi salvo como tela atual');
+ w=await load();
+ ok(w.document.querySelectorAll('.solution').length===30,'Gabarito não foi restaurado após recarregar');
+ get(w,'#restart').click();
+ ok(w.document.querySelectorAll('.solution').length===30,'O navegador deve aguardar confirmação para reiniciar');
+ // Reinicialização com confirmação explicitamente simulada.
+ w.confirm=()=>true;
+ get(w,'#restart').click();
+ ok(!w.document.querySelector('.solution'),'Gabarito permaneceu acessível após reiniciar');
+ ok(JSON.parse(localStorage.getItem(key)).done.length===0,'Progresso não foi zerado');
+ // Um estado alterado no navegador não pode abrir o gabarito prematuramente.
+ localStorage.setItem(key,JSON.stringify({done:[0,1],current:3,screen:'answers'}));
+ w=await load();
+ ok(!w.document.querySelector('.solution'),'O gabarito não foi protegido contra estado incompleto');
+ ok(get(w,'.progress-numbers').textContent.includes('2 / 30'),'Retomada seletiva falhou');
+ status.textContent='SMOKE_SUCCESS\n30 questões marcadas, gabarito somente ao final, impressão, persistência, reinício e bloqueio testados';
+})().catch(e=>document.querySelector('#status').textContent='SMOKE_FAILURE: '+e.stack);
+</script></body></html>
