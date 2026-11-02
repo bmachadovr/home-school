@@ -107,6 +107,14 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 - O teste `atividades/chat-4b/test-harness.html` foi atualizado para verificar 240 escolhas em navegador Chrome, o balão enviado, confirmação, presença de “digitando…”, ausência de opções durante a espera, exibição posterior da nova pergunta, retomada local e nota final. Adicionalmente, testa o intervalo normal real da primeira pergunta em torno de 1,4s. A execução do GitHub Actions **#41471428716 foi concluída com SUCCESS** para conteúdo, sintaxe e interação em Chrome. Falta apenas confirmar o deploy do último commit documental.
 - Não houve inspeção visual manual em aparelhos móveis, apenas verificação de comportamento no Chrome headless.
 
+## Retratos fotográficos nos chats históricos (2026-11-02)
+
+- **Mudança operacional vigente:** as conversas de Português/Machado de Assis e Matemática/Einstein têm retratos fotográficos históricos no formulário inicial, cabeçalho, mensagens do professor e indicador de digitação, aproximando o visual de um aplicativo de mensagens. As respostas da aluna permanecem balões próprios, sem exigir foto ou novo dado pessoal.
+- Retratos de domínio público disponíveis via Wikimedia Commons: Machado de Assis (1904), **Acervo Arquivo Nacional**, <https://commons.wikimedia.org/wiki/File:Machado_de_Assis_1904.jpg>; Albert Einstein (1921), fotografia de **Ferdinand Schmutzer**, <https://commons.wikimedia.org/wiki/File:Einstein1921_by_F_Schmutzer_4_(cropped).jpg>. As URLs verificadas de miniaturas Wikimedia ficam nos campos `photo` das configurações `atividades/chat-4b/{portugues,matematica}/config.js`, com `photoSource` e `photoAttribution` para créditos.
+- Motor `atividades/chat-4b/engine.js`: função central `teacherAvatar()`, com carregamento sob demanda nas bolhas, uso do cache do navegador, iniciais como fallback em caso de falha de imagem, foto decorativa para acessibilidade e crédito externo em link. CSS responsivo em `atividades/chat-4b/style.css` mantém alinhamento da mensagem e do avatar em telas pequenas.
+- Testes `test.mjs` e `test-harness.html` foram ampliados para conferir URLs e créditos, foto no cabeçalho, nas mensagens e no balão de digitação, além de fallback provocado artificialmente; preservam os testes de 240 seleções, intervalo de digitação, retomada, nota e Home. GitHub Actions do chat #41473353404 concluiu **SUCCESS**; deployment Pages do último commit documental deve ser validado antes da entrega.
+- **Limitação atual:** as imagens são hospedadas pela Wikimedia e dependem de conexão/carregamento externo; o avatar alterna para as iniciais caso falhem. Não foram incluídos arquivos binários no repositório e não há inspeção visual manual em dispositivo móvel.
+
 ## Current direction
 Aumentar a interatividade e a qualidade pedagógica mantendo navegação simples e linguagem apropriada à aluna.
 
