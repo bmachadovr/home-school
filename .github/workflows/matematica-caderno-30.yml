@@ -1,0 +1,36 @@
+name: Matemática - Caderno de 30 Cálculos
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'matematica/4-bimestre/caderno-30/**'
+      - 'index.html'
+      - '.github/workflows/matematica-caderno-30.yml'
+  workflow_dispatch:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validar sintaxe dos scripts
+        run: |
+          for f in matematica/4-bimestre/caderno-30/*.js; do node --check "$f"; done
+      - name: Validar 30 questões, progressão e cálculos
+        run: node --test matematica/4-bimestre/caderno-30/test.mjs
+      - name: Testar fluxo completo no Chrome headless
+        run: |
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || true)"
+          if [ -z "$CHROME" ]; then echo "Chrome/Chromium não instalado"; exit 1; fi
+          python3 -m http.server 8988 --bind 127.0.0.1 >/tmp/caderno-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill $SERVER_PID || true' EXIT
+          sleep 2
+          "$CHROME" --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --disable-background-networking --virtual-time-budget=16000 --dump-dom "http://127.0.0.1:8988/matematica/4-bimestre/caderno-30/test-harness.html" >/tmp/caderno-browser.html 2>/tmp/caderno-error.log
+          if grep -q '<pre id="status">SMOKE_FAILURE' /tmp/caderno-browser.html; then
+            sed -n '/<pre id="status">/,/<\/pre>/p' /tmp/caderno-browser.html | head -c 4000
+            exit 1
+          fi
+          grep '<pre id="status">SMOKE_SUCCESS' /tmp/caderno-browser.html
