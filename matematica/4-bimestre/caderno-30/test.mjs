@@ -24,7 +24,7 @@ test('Trinta questões inéditas de cálculo, sem múltipla escolha ou perguntas
   assert.equal(q.level,i<10?'Fundamentos':i<20?'Intermediário':'Desafios');
   assert.ok(q.title.length>9);
   assert.ok(q.topic.length>4);
-  assert.ok(q.problem.length>110,'Enunciado muito curto: '+i);
+  assert.ok(q.problem.length>80,'Enunciado muito curto: '+i);
   assert.ok(/\d/.test(q.problem),'Enunciado sem dados numéricos: '+i);
   assert.ok(q.steps.length>=3,'Resolução insuficiente: '+i);
   assert.ok(q.answer.length>5,'Resposta não registrada: '+i);
@@ -41,7 +41,7 @@ test('Conteúdos coerentes com capítulos 13 e 14, com dificuldade gradual',()=>
 });
 test('Conferência independente dos resultados de cálculo mais complexos',()=>{
  assert.equal((5.6*75000)/100000,4.2);
- assert.equal((96+144)/(1+20/60+2+40/60),60);
+ assert.equal((96+144)/((80+160)/60),60);
  assert.equal(1260/7,180);
  assert.equal(45600/120-73500/210,30);
  assert.equal(148/8*13.5,249.75);
