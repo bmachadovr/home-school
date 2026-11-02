@@ -98,6 +98,15 @@ Portal de estudos interativo, organizado por matérias, para uso direto pela alu
 - Testes automáticos em `atividades/chat-4b/test.mjs` e `test-harness.html`, workflow `.github/workflows/chat-4b.yml`. GitHub Actions #41466560616 concluiu **SUCCESS**, incluindo checagem de sintaxe, auditoria de 160 falas e pontuação, 240 respostas simuladas no Chrome, percursos de 100/100 pontos nas duas matérias, percurso de 97 pontos com alternativas parciais/incorretas, retomada após atualização da página e presença dos links na Home.
 - O teste de navegador é automatizado. Não há inspeção manual da renderização em todos os tamanhos de telefone nem sincronização de progresso entre dispositivos. Verificar conclusão do deploy GitHub Pages para o commit final antes de confirmar publicação ao usuário.
 
+## Melhoria de usabilidade nos chats de Machado e Einstein (2026-11-02)
+
+- **Regra vigente:** após a aluna escolher uma resposta, a mensagem escolhida aparece imediatamente como balão enviado com destaque visual; um rodapé confirma **“Resposta enviada!”**. O professor exibe o estado **“digitando…”** com três pontos animados por **1,40 a 1,82 segundos** em cada turno, e somente depois libera a pergunta e as quatro opções seguintes. A nova pergunta e o conjunto de respostas ganham destaque visual, com indicador `N/80`.
+- O atraso é realizado pelo motor compartilhado `atividades/chat-4b/engine.js` e pelo visual `style.css`, aplicando-se simultaneamente a Português/Machado de Assis e Matemática/Einstein. Foi mantida a seleção exclusiva por opções, sem correção/gabarito durante o diálogo, assim como o esquema **0/0,75/1,25** e total máximo de **100 pontos em 80 turnos**.
+- A pausa também ocorre após a escolha de número 80, antes de exibir o resultado. O estado de espera `pendingUntil` é salvo no localStorage junto de nome e respostas; após recarregar a página, uma espera ainda em andamento é retomada, e não se duplica o envio. O botão de reinício cancela temporizações anteriores.
+- A animação visual respeita `prefers-reduced-motion` (sem movimento animado, mas com intervalo temporal mantido). Existe um modo acelerado de testes **somente para localhost 127.0.0.1**, exigindo `chatTestFast`, não utilizado na publicação.
+- O teste `atividades/chat-4b/test-harness.html` foi atualizado para verificar 240 escolhas em navegador Chrome, o balão enviado, confirmação, presença de “digitando…”, ausência de opções durante a espera, exibição posterior da nova pergunta, retomada local e nota final. Adicionalmente, testa o intervalo normal real da primeira pergunta em torno de 1,4s. A execução do GitHub Actions **#41471428716 foi concluída com SUCCESS** para conteúdo, sintaxe e interação em Chrome. Falta apenas confirmar o deploy do último commit documental.
+- Não houve inspeção visual manual em aparelhos móveis, apenas verificação de comportamento no Chrome headless.
+
 ## Current direction
 Aumentar a interatividade e a qualidade pedagógica mantendo navegação simples e linguagem apropriada à aluna.
 
