@@ -43,9 +43,9 @@
  localStorage.removeItem('hs-mat4-v1-r2-done');
  localStorage.removeItem('hs-mat4-v1-r3-done');
  let w=await load('revisao-2/index.html');
- assert(!!w.document.querySelector('.lock'),'R2 deveria estar bloqueada antes da R1');
+ assert(!!w.document.querySelector('.lesson'),'R2 deve abrir sem concluir R1');
  w=await load('revisao-3/index.html');
- assert(!!w.document.querySelector('.lock'),'R3 deveria estar bloqueada antes da R2');
+ assert(!!w.document.querySelector('.lesson'),'R3 deve abrir sem concluir R2');
  const logs=[];
  for(let rev=1;rev<=3;rev++){
     w=await load('revisao-'+rev+'/index.html');
@@ -53,8 +53,8 @@
     logs.push('R'+rev+': '+slides.length+' telas, '+JSON.stringify(play(w,slides,rev)));
  }
  w=await load('../../index.html');
- assert(w.document.querySelector('[data-mat4-go="2"]').getAttribute('href').includes('revisao-2'),'Home não liberou R2');
- assert(w.document.querySelector('[data-mat4-go="3"]').getAttribute('href').includes('revisao-3'),'Home não liberou R3');
- label.textContent='SMOKE_SUCCESS\n'+logs.join('\n')+'\nHome desbloqueada';
+ assert(w.document.querySelector('a[href="matematica/4-bimestre/revisao-2/index.html"]').getAttribute('href').includes('revisao-2'),'R2 não está liberada por padrão');
+ assert(w.document.querySelector('a[href="matematica/4-bimestre/revisao-3/index.html"]').getAttribute('href').includes('revisao-3'),'R3 não está liberada por padrão');
+ label.textContent='SMOKE_SUCCESS\n'+logs.join('\n')+'\nHome com links ativos';
 })().catch(function(err){document.querySelector('#status').textContent='SMOKE_FAILURE: '+err.stack;});
 </script></body></html>
