@@ -49,3 +49,19 @@ body[data-subject="matematica"] .question-index{background:#e2edfc;color:#376c9f
 @keyframes new-message{from{opacity:.65;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:650px){.reply-waiting{min-height:100px}.typing-bubble{max-width:92%}.sent-confirm strong{font-size:.88rem}}
 @media(prefers-reduced-motion:reduce){.typing-dots i,.waiting-bar>div,.just-sent,.question-new,.reply-fresh{animation:none!important}}
+
+/* Retratos históricos dos professores: perfil e bolhas, visual de mensageiro. */
+.teacher-avatar{position:relative;display:grid;place-items:center;flex:0 0 auto;width:46px;height:46px;overflow:hidden;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 6px #163c331c;background:linear-gradient(145deg,#e5c995,#a57b4d);color:#4e3824;font-weight:900;isolation:isolate}
+.teacher-avatar .avatar-fallback{display:grid;place-items:center;position:absolute;inset:0;font-size:.87rem;line-height:1}
+.teacher-avatar .avatar-photo{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;object-position:center 33%;z-index:1;background:#fff}
+.teacher-avatar.photo-failed .avatar-photo{display:none}
+.preview .teacher-avatar{width:50px;height:50px;min-width:50px}
+.conversation-header .teacher-avatar{width:45px;height:45px;min-width:45px}
+.teacher-message-row{display:flex;align-items:flex-end;gap:7px;margin:0 0 11px;max-width:100%}
+.teacher-message-row .message{margin:0;max-width:min(calc(100% - 42px),540px)}
+.teacher-message-row .typing-bubble{margin:0;max-width:min(calc(100% - 42px),460px)}
+.teacher-avatar.message-avatar{width:32px;height:32px;min-width:32px;border-width:1.5px}
+.teacher-avatar.message-avatar .avatar-fallback{font-size:.56rem}
+body[data-subject="matematica"] .teacher-avatar{background:linear-gradient(145deg,#d6e0ed,#a3bad4);color:#254e69}
+.photo-credit{font-weight:700;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:650px){.teacher-message-row{gap:5px}.teacher-avatar.message-avatar{width:28px;height:28px;min-width:28px}.teacher-avatar.message-avatar .avatar-fallback{font-size:.49rem}.teacher-message-row .message{max-width:min(calc(100% - 35px),540px)}.teacher-message-row .typing-bubble{max-width:calc(100% - 35px)}}
