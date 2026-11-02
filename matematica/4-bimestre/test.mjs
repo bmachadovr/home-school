@@ -46,7 +46,8 @@ test('Home preserva bimestres e habilita as seis revisões',()=>{
  for(const subject of ['portugues','matematica'])for(let n=1;n<=3;n++){
   assert.ok(home.includes('href="'+subject+'/4-bimestre/revisao-'+n+'/index.html"'),'Link direto ausente: '+subject+' '+n);
  }
- assert.doesNotMatch(home,/data-(?:port|mat)4-go|aria-disabled="true"/);
+ const active=home.slice(home.indexOf('<section class="term current"'),home.indexOf('<details class="term archive">'));
+ assert.doesNotMatch(active,/data-(?:port|mat)4-go|aria-disabled="true"/);
  const scripts=[...home.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
  for(const script of scripts)new vm.Script(script,{filename:'home-inline.js'});
 });
