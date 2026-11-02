@@ -14,3 +14,38 @@ body[data-subject="matematica"] .option-number{background:#e9f2fc;color:#426c9c}
 body[data-subject="matematica"] .score{color:#306ca2}
 body[data-subject="portugues"] .portrait{background:linear-gradient(140deg,#e5c995,#a57b4d);color:#4e3824}
 .loading{padding:35px;text-align:center;color:#657e78;font-weight:800}
+
+/* Conversação pausada: a escolha é enviada primeiro, o professor digita depois. */
+.just-sent{outline:2px solid #2dac83;outline-offset:2px;animation:sent-pop .28s ease-out}
+.typing-bubble{display:flex;align-items:center;gap:11px;max-width:max-content;background:#fff;border-radius:4px 16px 16px 16px;box-shadow:0 2px 8px #25483018;padding:14px 16px;margin:8px auto 14px 0}
+.typing-caption{color:#617b72;font-size:.77rem;font-style:italic;white-space:nowrap}
+.typing-dots{display:flex;align-items:center;gap:4px}
+.typing-dots i{display:block;width:7px;height:7px;border-radius:50%;background:#47a98a;animation:typing-bounce 1s ease-in-out infinite}
+.typing-dots i:nth-child(2){animation-delay:.17s}
+.typing-dots i:nth-child(3){animation-delay:.34s}
+.reply-waiting{min-height:108px;display:flex;flex-direction:column;justify-content:center;gap:16px;background:linear-gradient(100deg,#f4fbf8,#e9f6ef)}
+.sent-confirm{display:flex;align-items:center;gap:13px}
+.sent-check{display:grid;place-items:center;background:#d6f4e4;color:#158566;width:41px;height:41px;min-width:41px;border-radius:50%;font-size:1.05rem;font-weight:900}
+.sent-confirm strong{font-size:.91rem;color:#176a53;display:block}
+.sent-confirm div span{display:block;color:#657f72;font-size:.8rem;margin-top:3px}
+.waiting-bar{height:4px;background:#d8eade;border-radius:10px;overflow:hidden}
+.waiting-bar>div{height:100%;width:35%;background:#37a987;border-radius:10px;animation:waiting-progress 1.1s ease-in-out infinite alternate}
+.question-new{box-shadow:0 0 0 3px #a2d9c7,0 6px 18px #235f4122;animation:new-message .7s ease-out}
+.reply-fresh{background:linear-gradient(180deg,#eaf8f1,#fafffc);border-top:3px solid #4abd92;animation:reply-enter .55s ease-out}
+.question-index{display:inline-block;margin-left:6px;font-size:.69rem;padding:3px 8px;border-radius:999px;background:#d8f3e8;color:#2a765d}
+body[data-subject="matematica"] .just-sent{outline-color:#4a93cf}
+body[data-subject="matematica"] .typing-dots i{background:#579bcf}
+body[data-subject="matematica"] .sent-check{background:#dceefa;color:#356ca3}
+body[data-subject="matematica"] .sent-confirm strong{color:#2f6b9e}
+body[data-subject="matematica"] .reply-waiting{background:linear-gradient(100deg,#f1f7ff,#e5eefc)}
+body[data-subject="matematica"] .waiting-bar>div{background:#548fca}
+body[data-subject="matematica"] .question-new{box-shadow:0 0 0 3px #9bc6e8,0 6px 18px #235b9a22}
+body[data-subject="matematica"] .reply-fresh{background:linear-gradient(180deg,#e8f1fb,#fafdff);border-top-color:#689fd7}
+body[data-subject="matematica"] .question-index{background:#e2edfc;color:#376c9f}
+@keyframes typing-bounce{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
+@keyframes waiting-progress{0%{transform:translateX(-15%)}100%{transform:translateX(235%)}}
+@keyframes sent-pop{from{transform:scale(.975);opacity:.6}to{transform:scale(1);opacity:1}}
+@keyframes reply-enter{from{opacity:.65;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes new-message{from{opacity:.65;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:650px){.reply-waiting{min-height:100px}.typing-bubble{max-width:92%}.sent-confirm strong{font-size:.88rem}}
+@media(prefers-reduced-motion:reduce){.typing-dots i,.waiting-bar>div,.just-sent,.question-new,.reply-fresh{animation:none!important}}
